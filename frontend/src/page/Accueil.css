@@ -1,0 +1,98 @@
+
+
+.accueil {
+    background-color: rgb(36, 36, 36);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.accueil1 {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accueil-titre1 {
+    color: red;
+}
+
+.accueil-titre2 {
+    color: white;
+    font-size: 30px;
+}
+
+.accueil-titre2 :nth-child(2) {
+    color: red;
+}
+
+.accueil-titre3 {
+    color: red;
+}
+
+.accueil-bouton {
+    display: flex;
+    gap: 15px;
+    
+}
+
+
+.accueil-bouton button{
+    width: 80%;
+    height: 10vh;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.accueil2 {
+    background-color: rgb(36, 36, 36);
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.accueil22 {
+    background-color: rgb(26, 26, 26);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    border: 1px solid white;
+}
+
+
+.titre-form {
+    color: red;
+    font-size: 40px;
+}
+.formulaire {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    gap: 20px;
+    color: grey;
+    gap: 4px;
+}
+
+.formulaire input {
+    height: 50px;
+    border-radius: 10px;
+    background-color: gray;
+    color: rgb(36, 36, 36);
+    margin-bottom: 10px;
+}
+
+.formulaire button{
+    height: 8vh;
+    font-size: 20px;
+    color: white;
+    background-color: red;
+    border-radius: 10px;
+}

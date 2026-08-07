@@ -1,0 +1,32 @@
+
+
+.navbar {
+    background-color: rgb(1, 1, 1);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 8vh;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.navbar1 {
+    display: flex;
+    flex: 1;
+    gap: 5px;
+}
+
+.recherche-navbar {
+    flex: 1;
+    width: 100%;
+    display: flex;
+
+}
+
+.navbar2 {
+    display: flex;
+    flex: 1;
+    gap: 5px;
+}
+
