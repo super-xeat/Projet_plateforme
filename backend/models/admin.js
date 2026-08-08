@@ -14,7 +14,7 @@ export const Ajout_annees = async(annees) => {
     await db.query(sql_ajouter_annees, [annees])
 }
 
-const sql_ajouter_model = `INSERT INTO model(model, id_marque) VALUES (?, ?)`
+const sql_ajouter_model = `INSERT INTO model(name, id_marque) VALUES (?, ?)`
 
 export const Ajout_model = async(model, id_marque) => {
     await db.query(sql_ajouter_model, [model, id_marque])
@@ -28,24 +28,7 @@ export const Ajout_categorie = async(categorie) => {
 
 // -----------------------------------------------
 
-const Obtenir_annees = `SELECT * FROM annees ORDER by name DESC`
 
-export const Get_annees = async() => {
-    const [result] = await db.query(Obtenir_annees)
-    return result 
-}
-
-const Obtenir_marque = `SELECT * FROM marque ORDER by name DESC`
-export const Get_marque = async() => {
-    const [result] = await db.query(Obtenir_annees)
-    return result 
-}
-
-const Obtenir_model = `SELECT * FROM model ORDER by name DESC`
-export const Get_model = async() => {
-    const [result] = await db.query(Obtenir_annees)
-    return result 
-}
 
 
 const sql_creation_vehicule = `INSERT INTO vehicule(name, id_model, id_annees) VALUES (?, ?, ?)`

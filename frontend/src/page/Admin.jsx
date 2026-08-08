@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useAuth } from "../context/authcontexte"
 import AdminCreation from "../components/Admin_Creation"
+import AdminGestion from "../components/Admin_Gestion"
+
 
 export default function Admin() {
 
@@ -42,7 +44,7 @@ export default function Admin() {
                 <div>
                     <h1>gestion du site</h1>
                     <h3>supprimer des utilisateur, produit, ou données de votre bdd</h3>
-                    
+                    <AdminGestion/>
                 </div>
             )}
 

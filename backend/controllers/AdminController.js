@@ -3,7 +3,8 @@ import {
     Ajout_annees_service,
     Ajout_categorie_service,
     Ajout_model_service,
-    Ajout_marque_service
+    Ajout_marque_service,
+    Creation_vehicule_service
  } from "../services/AdminService.js";
 
 
@@ -56,5 +57,18 @@ export const Ajout_model_controllers = async(req, res) => {
 
     } catch(error) {
         console.error('error model controller :', error)
+    }
+}
+
+export const Creation_vehicule_controller = async(req, res) => {
+
+    try {
+        const {name, id_model, id_marque} = req.body
+        await Creation_vehicule_service(name, id_model, id_marque)
+
+        return res.status(201).json({'message': 'vehicule créer'})
+
+    } catch (error) {
+        console.error('error vehicule controller', error)
     }
 }
