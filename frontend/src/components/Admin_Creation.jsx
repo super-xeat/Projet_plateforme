@@ -9,13 +9,19 @@ export default function AdminCreation() {
     const [annees, setannees] = useState('')
     const [marque, setmarque] = useState('')
     const [model, setmodel] = useState('')
-
     const [idmarque, setidmarque] = useState('')
 
-    const {Get_marque, listemarque  } = useAuth()
+    const [idmodel, setidmodel] = useState('')
+    const [nameVoiture, setnameVoiture] = useState('')
+    const [idannees, setidannees] = useState('')
+
+
+    const {Get_marque, listemarque, Get_model, listemodel, Get_annees, listeannees  } = useAuth()
 
     useEffect(()=> {
         Get_marque()
+        Get_model()
+        Get_annees()
     }, [])
 
     async function Creation_annees(annees) {
@@ -91,6 +97,27 @@ export default function AdminCreation() {
         }
     }
 
+    async function Creation_vehicule(namevoiture, idmodel, idannees) {
+
+        try {
+            const response = await fetch('http://localhost:8000/api/admin/creation_vehicule', {
+                method: 'POST',
+                headers: {'content-type':'application/json'},
+                body: JSON.stringify({
+                    name: namevoiture,
+                    id_model: idmodel,
+                    id_annees: idannees
+                })
+            })
+
+            if (response.ok) {
+                alert('nouveau véhicule créer')
+            }
+        } catch (error) {
+            console.error('erreur :', error)
+        }
+    }
+
     const Handlesubmit = (e, value) => {
         
         e.preventDefault()
@@ -110,6 +137,20 @@ export default function AdminCreation() {
             setidmarque('')
         }
     }
+
+    const Handlevehicule = (e) => {
+
+        if (!nameVoiture || !idmodel || !idannees) {
+            alert('il manque un champs')
+        } else {
+            e.preventDefault()
+            Creation_vehicule(nameVoiture, idmodel, idannees)
+            setnameVoiture('')
+            setidannees('')
+            setidmodel('')
+        }
+    }
+
 
     return(
         <div>
@@ -132,10 +173,30 @@ export default function AdminCreation() {
             </form>
 
             <form onSubmit={Handlemodel}>
-                <input onChange={(e)=>setmodel(e.target.value)} value={model} type="text" placeholder="ajouter une model"/>
+                <input onChange={(e)=>setmodel(e.target.value)} value={model} type="text" placeholder="ajouter un model"/>
                 <select onChange={(e)=>setidmarque(e.target.value)} value={idmarque}>
                     {listemarque?.map((marque)=> (
                         <option value={marque.id_marque} key={marque.id_marque}>{marque.name}</option>
+                    ))}
+                </select>
+                <button type="submit">soumettre</button>
+            </form>
+
+            <form onSubmit={Handlevehicule}>
+                <input onChange={(e)=>setnameVoiture(e.target.value)} type="text" value={nameVoiture} placeholder="ajouter une motorisation"/>
+
+                <select onChange={(e)=>setidmodel(e.target.value)} value={idmodel}>
+                    {listemodel.map((model)=> (
+                        <option key={model.id_model} value={model.id_model}>
+                            {model.marque_name} {model.model_name} 
+                        </option>
+                    ))}
+                </select>
+                <select onChange={(e)=>setidannees(e.target.value)} value={idannees}>
+                    {listeannees.map((annees)=>(
+                        <option value={annees.id_annees} key={annees.id_annees}>
+                            {annees.name}
+                        </option>
                     ))}
                 </select>
                 <button type="submit">soumettre</button>

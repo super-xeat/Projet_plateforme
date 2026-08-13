@@ -3,7 +3,8 @@ import {
     Get_annees,
     Get_categorie,
     Get_marque,
-    Get_model
+    Get_model,
+    
  } from "../models/product.js"
 
 

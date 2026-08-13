@@ -3,10 +3,11 @@ import {
     Ajout_annees,
     Ajout_categorie,
     Ajout_model,
-    Ajout_liaison,
     Ajout_marque,
-    Ajout_product,
-    Creation_vehicule
+    Creation_vehicule,
+
+    Ajout_liaison_categorie,
+    Ajout_liaison_vehicule
  } from "../models/admin.js";
 
 
@@ -43,12 +44,12 @@ export const Ajout_model_service = async(model, id_marque) => {
 }
 
 
-
 export const Creation_vehicule_service = async(name, id_model, id_annees) => {
 
-    if (!name.trim('') || !id_model || !id_marque ) {
+    if (!name.trim('') || !id_model || !id_annees ) {
         throw {status: 401, 'message': 'il manque un champs'}
     }
 
     await Creation_vehicule(name, id_model, id_annees)
 }
+

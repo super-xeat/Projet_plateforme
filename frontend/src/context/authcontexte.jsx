@@ -13,10 +13,32 @@ export const useAuth = () => {
 export default function Authprovider({children}) {
 
     const [profil, setprofil] = useState(null)
+
     const [listeCategorie, setlisteCategorie] = useState([])
     const [listemarque, setlistemarque] = useState([])
+    const [listemodel, setlistemodel] = useState([])
+    const [listeannees, setlisteannees] = useState([])
 
     const navigate = useNavigate()
+
+    async function refresh() {
+        try {
+            const response = await fetch('http://localhost:8000/api/me', {
+                credentials:'include'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setprofil(data.user)
+                console.log('vous etes reconnecté')
+            }
+        } catch (error) {
+            console.log('erreur :', error)
+        }
+    }
+
+    useEffect(()=> {
+        refresh()
+    }, [])
 
     async function Login(email, password) {
         
@@ -24,6 +46,7 @@ export default function Authprovider({children}) {
             const response = await fetch('http://localhost:8000/api/user/login', {
                 method: 'POST',
                 headers: {'content-type': 'application/json'},
+                credentials: 'include',
                 body: JSON.stringify({
                     'email': email,
                     'password': password
@@ -72,7 +95,29 @@ export default function Authprovider({children}) {
         }
     }
 
+    async function Get_model() {
+        try {
+            const response = await fetch('http://localhost:8000/api/product/obtenir_model')
+            if (response.ok) {
+                const data = await response.json()
+                setlistemodel(data.listeModel)
+            }
+        } catch (error) {
+            console.log('erreur get_marque :', error)
+        }
+    }
 
+    async function Get_annees() {
+        try {
+            const response = await fetch('http://localhost:8000/api/product/obtenir_annees')
+            if (response.ok) {
+                const data = await response.json()
+                setlisteannees(data.listeAnnees)
+            }
+        } catch (error) {
+            console.log('erreur get_marque :', error)
+        }
+    }
     return(
         <authContext.Provider value={{
             Login, 
@@ -80,7 +125,11 @@ export default function Authprovider({children}) {
             Get_categorie,
             listeCategorie,
             Get_marque,
-            listemarque  
+            listemarque,
+            Get_model,
+            listemodel,
+            Get_annees,
+            listeannees
             }}>
             {children}
         </authContext.Provider>

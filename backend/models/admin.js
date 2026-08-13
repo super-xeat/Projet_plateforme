@@ -48,8 +48,13 @@ export const Ajout_product = async(name, description, price, image) => {
 // values doit etre une liste 
 
 const sql_liaison_product = `INSERT INTO product_vehicule(id_product, id_vehicule) VALUES ?` 
-export const Ajout_liaison = async(values) => {
+export const Ajout_liaison_vehicule = async(values) => {
     await db.query(sql_liaison_product, values) 
+}
+
+const sql_liaison_categorie = `INSERT INTO product_categorie(id_product, id_categorie) VALUES ?` 
+export const Ajout_liaison_categorie = async(values) => {
+    await db.query(sql_liaison_categorie, values) 
 }
 
 

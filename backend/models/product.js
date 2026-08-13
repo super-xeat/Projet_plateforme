@@ -21,7 +21,14 @@ export const Get_marque = async() => {
     return result 
 }
 
-const Obtenir_model = `SELECT * FROM model ORDER by name DESC`
+const Obtenir_model = `SELECT model.id_model, 
+                       model.name AS model_name, 
+                       marque.name AS marque_name
+                       FROM model                      
+                       JOIN marque
+                       ON model.id_marque = marque.id_marque
+                       ORDER by model.name DESC`
+
 export const Get_model = async() => {
     const [result] = await db.query(Obtenir_model)
     return result 

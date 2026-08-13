@@ -1,5 +1,7 @@
 
 import { create_user, find_user, Login } from "../models/user.js";
+import jwt from 'jsonwebtoken';
+import cookieParser from 'cookie-parser';
 import bcrypt from 'bcrypt'
 
 
@@ -20,17 +22,26 @@ export const UserService_create = async(nom, prenom, email, mdp, adresse, pseudo
 
 export const Login_service = async(email, password) => {
 
-    const user = await Login(email)
+    const user_result = await Login(email)
     
-    console.log('user_service :', user)
-    if (!user) {
+    if (!user_result) {
         throw {status: 401, 'message': 'problème identifiant'}
-    } 
-
-    const mot_de_passe = await bcrypt.compare(password, user[0].mot_de_passe)
+    }
+    
+    const user = user_result[0]
+    
+    const mot_de_passe = await bcrypt.compare(password, user.mot_de_passe)
     if (!mot_de_passe) {
         throw {status: 401, 'message': 'erreur identifiant'}
     }
     
-    return user[0]
+    // construction du toekn
+    const token = jwt.sign(
+        { "userid": user.user_id, "role": user.role },
+        process.env.SECRET_KEY,
+        {expiresIn: '3h'}
+    )
+    
+    
+    return {user, token}
 }

@@ -1,5 +1,6 @@
 
 import { UserService_create, Login_service } from "../services/userService.js";
+import cookieParser from 'cookie-parser';
 
 
 export const userController = async(req, res) => {
@@ -30,8 +31,14 @@ export const Login_controller = async(req, res) => {
         if (!email || !password) {
             return res.status(400).json({'message': 'champs manquant'})
         }
-        const user = await Login_service(email, password)
-        
+        const { user, token } = await Login_service(email, password)
+
+        res.cookie('token', token, {
+            httpOnly: true,
+            sameSite: 'lax',
+            secure: 'production',
+            maxAge: 3 * 60 * 60 * 1000 
+        });
 
         const user_trouver = {
             'id': user.id_user,

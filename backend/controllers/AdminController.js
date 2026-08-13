@@ -63,8 +63,8 @@ export const Ajout_model_controllers = async(req, res) => {
 export const Creation_vehicule_controller = async(req, res) => {
 
     try {
-        const {name, id_model, id_marque} = req.body
-        await Creation_vehicule_service(name, id_model, id_marque)
+        const {name, id_model, id_annees} = req.body
+        await Creation_vehicule_service(name, id_model, id_annees)
 
         return res.status(201).json({'message': 'vehicule créer'})
 
