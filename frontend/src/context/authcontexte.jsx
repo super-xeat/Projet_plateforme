@@ -18,6 +18,7 @@ export default function Authprovider({children}) {
     const [listemarque, setlistemarque] = useState([])
     const [listemodel, setlistemodel] = useState([])
     const [listeannees, setlisteannees] = useState([])
+    const [listeVehicule, setlisteVehicule] = useState([])
 
     const navigate = useNavigate()
 
@@ -73,7 +74,10 @@ export default function Authprovider({children}) {
 
     async function Get_categorie() {
         try {
-            const response = await fetch('http://localhost:8000/api/product/obtenir_categorie')
+            const response = await fetch('http://localhost:8000/api/product/obtenir_categorie', {
+                method: 'GET',
+                credentials: 'include'
+            })
             if (response.ok) {
                 const data = await response.json()
                 setlisteCategorie(data.listeCategorie)
@@ -85,7 +89,10 @@ export default function Authprovider({children}) {
 
     async function Get_marque() {
         try {
-            const response = await fetch('http://localhost:8000/api/product/obtenir_marque')
+            const response = await fetch('http://localhost:8000/api/product/obtenir_marque', {
+                method: 'GET',
+                credentials: 'include'
+            })
             if (response.ok) {
                 const data = await response.json()
                 setlistemarque(data.listeMarque)
@@ -97,7 +104,10 @@ export default function Authprovider({children}) {
 
     async function Get_model() {
         try {
-            const response = await fetch('http://localhost:8000/api/product/obtenir_model')
+            const response = await fetch('http://localhost:8000/api/product/obtenir_model', {
+                method: 'GET',
+                credentials: 'include'
+            })
             if (response.ok) {
                 const data = await response.json()
                 setlistemodel(data.listeModel)
@@ -109,7 +119,10 @@ export default function Authprovider({children}) {
 
     async function Get_annees() {
         try {
-            const response = await fetch('http://localhost:8000/api/product/obtenir_annees')
+            const response = await fetch('http://localhost:8000/api/product/obtenir_annees', {
+                method: 'GET',
+                credentials: 'include',
+            })
             if (response.ok) {
                 const data = await response.json()
                 setlisteannees(data.listeAnnees)
@@ -118,6 +131,22 @@ export default function Authprovider({children}) {
             console.log('erreur get_marque :', error)
         }
     }
+
+    async function Get_vehicule() {
+        try {
+            const response = await fetch('http://localhost:8000/api/product/obtenir_vehicule', {
+                method: 'GET',
+                credentials: 'include',
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setlisteVehicule(data.listeVehicule)
+            }
+        } catch (error) {
+            console.log('erreur get_marque :', error)
+        }
+    }
+
     return(
         <authContext.Provider value={{
             Login, 
@@ -129,7 +158,9 @@ export default function Authprovider({children}) {
             Get_model,
             listemodel,
             Get_annees,
-            listeannees
+            listeannees,
+            Get_vehicule,
+            listeVehicule
             }}>
             {children}
         </authContext.Provider>

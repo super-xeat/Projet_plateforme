@@ -29,8 +29,6 @@ export const Ajout_categorie = async(categorie) => {
 // -----------------------------------------------
 
 
-
-
 const sql_creation_vehicule = `INSERT INTO vehicule(name, id_model, id_annees) VALUES (?, ?, ?)`
 export const Creation_vehicule = async(name, id_model, id_annees) => {
     const vehicule = await db.query(sql_creation_vehicule, [name, id_model, id_annees])
@@ -38,23 +36,24 @@ export const Creation_vehicule = async(name, id_model, id_annees) => {
 }
 
 
-
 // -------------------------------------------------
-const sql_ajouter_produit = `INSERT INTO product(name, description, price, image) VALUES (?, ?, ?, ?)`
-export const Ajout_product = async(name, description, price, image) => {
-    const product = await db.query(sql_ajouter_produit, [name, description, price, image])
+const sql_ajouter_produit = `INSERT INTO product(name, description, price, image, id_categorie, stock) VALUES (?, ?, ?, ?, ?, ?)`
+export const Ajout_product = async(name, description, price, image, id_categorie, stock) => {
+    const product = await db.query(sql_ajouter_produit, [name, description, price, image, id_categorie, stock])
+    console.log('product :', product)
     return product
 }
 // values doit etre une liste 
 
 const sql_liaison_product = `INSERT INTO product_vehicule(id_product, id_vehicule) VALUES ?` 
-export const Ajout_liaison_vehicule = async(values) => {
-    await db.query(sql_liaison_product, values) 
+export const Ajout_liaison_vehicule = async(values) => { 
+    await db.query(sql_liaison_product, [values]) 
 }
+ 
 
-const sql_liaison_categorie = `INSERT INTO product_categorie(id_product, id_categorie) VALUES ?` 
-export const Ajout_liaison_categorie = async(values) => {
-    await db.query(sql_liaison_categorie, values) 
+//----------------------------------------
+
+const sql_delete_categorie = `DELETE FROM categorie WHERE id_categorie = ?`
+export const Delete_categorie = async(id_categorie) => {
+    await db.query(sql_delete_categorie, [id_categorie])
 }
-
-

@@ -33,3 +33,21 @@ export const Get_model = async() => {
     const [result] = await db.query(Obtenir_model)
     return result 
 }
+
+
+const Obtenir_vehicule_sql = `SELECT vehicule.id_vehicule,
+                              vehicule.name,
+                              model.name as model_name,
+                              annees.name as annees_name
+                              FROM vehicule
+                              JOIN model 
+                              ON vehicule.id_model = model.id_model
+                              JOIN annees
+                              ON vehicule.id_annees = annees.id_annees
+                              ORDER by vehicule.name DESC`
+
+export const Obtenir_vehicule = async() => {
+    const [result] = await db.query(Obtenir_vehicule_sql)
+    return result
+}
+    

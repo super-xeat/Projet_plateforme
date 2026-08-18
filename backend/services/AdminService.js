@@ -6,8 +6,10 @@ import {
     Ajout_marque,
     Creation_vehicule,
 
-    Ajout_liaison_categorie,
-    Ajout_liaison_vehicule
+    Ajout_product,
+    Ajout_liaison_vehicule,
+
+    Delete_categorie
  } from "../models/admin.js";
 
 
@@ -53,3 +55,32 @@ export const Creation_vehicule_service = async(name, id_model, id_annees) => {
     await Creation_vehicule(name, id_model, id_annees)
 }
 
+// ------------------------------------
+
+export const Ajout_produit_service = async(name, description, price, image, id_categorie, stock, valuesVehicule) => {
+
+    if (!name || !description || !price || !image || !id_categorie || !stock) {
+        throw {status: 401, 'message': 'il manque un champs'}
+    }
+    const product = await Ajout_product(name, description, price, image, id_categorie, stock)
+    const Idproduct = product[0].insertId
+
+    console.log('product :', product)
+    if (!valuesVehicule || valuesVehicule.length === 0) {
+        throw {status: 401, 'message': 'probleme de liste vehicule'}
+    }
+    
+    const valueFinal = valuesVehicule.map(id_vehicule => [Idproduct, Number(id_vehicule)])
+    
+    await Ajout_liaison_vehicule(valueFinal)
+} 
+
+
+// --------------------------------------
+export const Delete_categorie_service = async(id_categorie) => {
+    if (!id_categorie) {
+        throw {status: 401, 'message': 'il manque un id'}
+    }
+
+    await Delete_categorie(id_categorie)
+}

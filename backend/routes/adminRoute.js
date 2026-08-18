@@ -4,7 +4,11 @@ import {
     Ajout_categorie_controllers,
     Ajout_model_controllers,
     Ajout_marque_controllers,
-    Creation_vehicule_controller
+    Creation_vehicule_controller,
+
+    Ajout_produit_Controller,
+
+    Delete_categorie_controller
 } from '../controllers/AdminController.js';
 
 import { Authentificate, Autorisation } from "../middleware/verif_token.js";
@@ -17,5 +21,8 @@ routeAdmin.post('/creation_annees', Authentificate, Autorisation, Ajout_annees_c
 routeAdmin.post('/creation_marque', Authentificate, Autorisation, Ajout_marque_controllers)
 routeAdmin.post('/creation_model', Authentificate, Autorisation, Ajout_model_controllers)
 routeAdmin.post('/creation_vehicule', Authentificate, Autorisation, Creation_vehicule_controller)
+routeAdmin.post('/ajout_produit', Authentificate, Autorisation, Ajout_produit_Controller)
+routeAdmin.delete('/delete_categorie/:id', Authentificate, Autorisation, Delete_categorie_controller)
+
 
 export default routeAdmin

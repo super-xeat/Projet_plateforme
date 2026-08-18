@@ -4,7 +4,11 @@ import {
     Ajout_categorie_service,
     Ajout_model_service,
     Ajout_marque_service,
-    Creation_vehicule_service
+    Creation_vehicule_service,
+
+    Ajout_produit_service,
+
+    Delete_categorie_service
  } from "../services/AdminService.js";
 
 
@@ -70,5 +74,31 @@ export const Creation_vehicule_controller = async(req, res) => {
 
     } catch (error) {
         console.error('error vehicule controller', error)
+    }
+}
+
+
+export const Ajout_produit_Controller = async(req, res) => {
+    try {
+        
+        const {name, description, price, image, id_categorie, stock,  valuesVehicule} = req.body
+        await Ajout_produit_service(name, description, price, image, id_categorie, stock, valuesVehicule)
+
+        return res.status(201).json({'message': 'produit créer'})
+
+    } catch (error) {
+        console.error('error controller :', error)
+    }
+}
+
+export const Delete_categorie_controller = async(id_categorie) => {
+
+    try {
+        const {id_categorie} = req.params
+        await Delete_categorie_service(id_categorie)
+
+        return res.status(201).json({'message': `categorie supprimé`})
+    } catch (error) {
+        console.log('erreur :', error)
     }
 }

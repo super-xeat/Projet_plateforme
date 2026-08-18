@@ -2,8 +2,8 @@ import {
     Get_categorie_service,
     Get_marque_service,
     Get_model_service,
-    Get_annees_service
-    
+    Get_annees_service,
+    Obtenir_vehicule_service
  } from "../services/productService.js"
 
 
@@ -55,6 +55,19 @@ export const Get_annees_controller = async(req, res) => {
         return res.status(200).json({
             'listeAnnees': result,
             'message': 'annees success'
+        })
+
+    } catch (error) {
+        console.log('erreur get du controller :', error)       
+    }
+}
+
+export const Obtenir_vehicule_controller = async(req, res) => {
+    try {
+        const result = await Obtenir_vehicule_service()
+        return res.status(200).json({
+            'listeVehicule': result,
+            'message': 'vehicule success'
         })
 
     } catch (error) {

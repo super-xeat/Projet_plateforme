@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useAuth } from "../context/authcontexte"
 import AdminCreation from "../components/Admin_Creation"
 import AdminGestion from "../components/Admin_Gestion"
+import './Admin.css'
 
 
 export default function Admin() {
@@ -11,7 +12,7 @@ export default function Admin() {
     
 
     return (
-        <div>
+        <div className="admin">
             <h1>votre profil admin</h1>
             <h2>Bienvenue : {profil.pseudo}</h2>
             

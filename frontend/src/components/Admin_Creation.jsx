@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/authcontexte";
+import './Admin_creation.css';
+import Ajout_produit from "./Ajout_produit";
+
 
 
 export default function AdminCreation() {
@@ -15,6 +18,7 @@ export default function AdminCreation() {
     const [nameVoiture, setnameVoiture] = useState('')
     const [idannees, setidannees] = useState('')
 
+    const [Ajoutproduit, setAjoutproduit] = useState(false)
 
     const {Get_marque, listemarque, Get_model, listemodel, Get_annees, listeannees  } = useAuth()
 
@@ -29,6 +33,7 @@ export default function AdminCreation() {
             const response = await fetch('http://localhost:8000/api/admin/creation_annees', {
                 method: 'POST',
                 headers: {'content-type': 'application/json'},
+                credentials: 'include',
                 body: JSON.stringify({
                     annees: annees
                 })
@@ -47,6 +52,7 @@ export default function AdminCreation() {
             const response = await fetch('http://localhost:8000/api/admin/creation_cate', {
                 method: 'POST',
                 headers: {'content-type': 'application/json'},
+                credentials: 'include',
                 body: JSON.stringify({
                     categorie: categorie
                 })
@@ -65,6 +71,7 @@ export default function AdminCreation() {
             const response = await fetch('http://localhost:8000/api/admin/creation_marque', {
                 method: 'POST',
                 headers: {'content-type': 'application/json'},
+                credentials:'include',
                 body: JSON.stringify({
                     marque: marque
                 })
@@ -82,6 +89,7 @@ export default function AdminCreation() {
         try {
             const response = await fetch('http://localhost:8000/api/admin/creation_model', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {'content-type': 'application/json'},
                 body: JSON.stringify({
                     model: model,
@@ -103,6 +111,7 @@ export default function AdminCreation() {
             const response = await fetch('http://localhost:8000/api/admin/creation_vehicule', {
                 method: 'POST',
                 headers: {'content-type':'application/json'},
+                credentials: 'include',
                 body: JSON.stringify({
                     name: namevoiture,
                     id_model: idmodel,
@@ -153,9 +162,19 @@ export default function AdminCreation() {
 
 
     return(
-        <div>
+        <div className="Admin_creation">
             <h1>Section création</h1>
             <h3>Ajouter des données dans votre bdd ou dans votre catalogue</h3>
+
+            
+            {Ajoutproduit === true ? (
+                <div>
+                    <Ajout_produit onbutton={setAjoutproduit}/>
+                    
+                </div>
+            ) : (
+                <button onClick={()=>setAjoutproduit(true)}>Ajouter un produit</button>
+            )}
 
             <form onSubmit={(e)=>Handlesubmit(e, 'annees')}>
                 <input onChange={(e)=>setannees(e.target.value)} value={annees} type="text" placeholder="ajouter une années"/>
@@ -201,6 +220,7 @@ export default function AdminCreation() {
                 </select>
                 <button type="submit">soumettre</button>
             </form>
+           
         </div>
     )
 }

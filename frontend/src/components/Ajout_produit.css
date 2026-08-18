@@ -1,0 +1,50 @@
+
+
+.conteneur {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border: 1px solid red;
+    top: 0;
+}
+
+.conteneur form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 70%;
+    padding: 1%;
+    border-radius: 20px;
+    background-color: rgba(78, 78, 78, 0.901);
+}
+
+.conteneur input, .conteneur select {
+    border: none;
+    width: 70%;
+    padding: 1%;
+    border-radius: 5px;
+}
+
+.conteneur button {
+    width: 30%;
+    padding: 2%;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    background-color: red;
+}
+
+.conteneur button:hover {
+    cursor: pointer;
+    background-color: rgb(255, 81, 81);
+}
+
+.formulaire_ajout_produit {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
