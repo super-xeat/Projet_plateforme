@@ -1,10 +1,19 @@
 import './Accueil.css'
-
+import { useAuth } from '../context/authcontexte'
+import { useEffect } from 'react'
 
 export default function Accueil() {
 
+    const {Get_categorie, listeCategorie} = useAuth()
+
+    useEffect(()=> {
+        Get_categorie()
+    }, [])
+
     return(
         <div className="accueil">
+
+            <div className='accueil_page1'>
             <div className="accuei1">
                 <div className="accueil-titre1">
                     <p>pièce d'origine & performance</p>
@@ -24,7 +33,7 @@ export default function Accueil() {
                     <button>Parcourir le catalogue</button>
                     <button>chercher par véhicule</button>
                 </div>
-            </div>
+            </div>+
             <div className="accueil2">
                 <div className="accueil22">
                     <div className="titre-form">
@@ -42,10 +51,24 @@ export default function Accueil() {
                         
                         <label htmlFor="">motorisation</label>
                         <input placeholder='entrez une motorisation'/>
-                        
+                         
 
                         <button>Trouver les pièces compatibles</button>
                     </form>
+                </div>
+            </div>
+            </div>
+            <div className="accueil3">
+                <h1>Categorie</h1>
+
+                <div>
+                    {listeCategorie.map((categorie)=>(
+                        <div key={categorie.id_categorie}>
+                            {categorie.name}
+                            
+                            <img src={categorie.image}/>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

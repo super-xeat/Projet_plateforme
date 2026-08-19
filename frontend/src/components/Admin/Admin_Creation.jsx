@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../context/authcontexte";
+import { useAuth } from "../../context/authcontexte";
 import './Admin_creation.css';
-import Ajout_produit from "./Ajout_produit";
+import Ajout_produit from "../Admin/Ajout_produit";
 
 
 
@@ -163,64 +163,68 @@ export default function AdminCreation() {
 
     return(
         <div className="Admin_creation">
-            <h1>Section création</h1>
-            <h3>Ajouter des données dans votre bdd ou dans votre catalogue</h3>
 
+            <div className="conteneur1">
+                <h1>Section création</h1>
+                <h3>Ajouter des données dans votre bdd ou dans votre catalogue</h3>
+            </div>
             
             {Ajoutproduit === true ? (
                 <div>
-                    <Ajout_produit onbutton={setAjoutproduit}/>
-                    
+                    <Ajout_produit onbutton={setAjoutproduit}/>                  
                 </div>
             ) : (
-                <button onClick={()=>setAjoutproduit(true)}>Ajouter un produit</button>
+                <button onClick={()=>setAjoutproduit(true)} className="button1">
+                    Ajouter un produit
+                </button>
             )}
 
-            <form onSubmit={(e)=>Handlesubmit(e, 'annees')}>
-                <input onChange={(e)=>setannees(e.target.value)} value={annees} type="text" placeholder="ajouter une années"/>
-                <button type="submit">soumettre</button>
-            </form>
+            <div className="conteneur2">
+                <form onSubmit={(e)=>Handlesubmit(e, 'annees')}>
+                    <input onChange={(e)=>setannees(e.target.value)} value={annees} type="text" placeholder="ajouter une années"/>
+                    <button type="submit">soumettre</button>
+                </form>
 
-            <form onSubmit={(e)=>Handlesubmit(e, 'categorie')}>
-                <input onChange={(e)=>setcategorie(e.target.value)} value={categorie} type="text" placeholder="ajouter une categorie"/>
-                <button type="submit">soumettre</button>
-            </form>
+                <form onSubmit={(e)=>Handlesubmit(e, 'categorie')}>
+                    <input onChange={(e)=>setcategorie(e.target.value)} value={categorie} type="text" placeholder="ajouter une categorie"/>
+                    <button type="submit">soumettre</button>
+                </form>
 
-            <form onSubmit={(e)=>Handlesubmit(e, 'marque')}>
-                <input onChange={(e)=>setmarque(e.target.value)} value={marque} type="text" placeholder="ajouter une marque"/>
-                <button type="submit">soumettre</button>
-            </form>
+                <form onSubmit={(e)=>Handlesubmit(e, 'marque')}>
+                    <input onChange={(e)=>setmarque(e.target.value)} value={marque} type="text" placeholder="ajouter une marque"/>
+                    <button type="submit">soumettre</button>
+                </form>
 
-            <form onSubmit={Handlemodel}>
-                <input onChange={(e)=>setmodel(e.target.value)} value={model} type="text" placeholder="ajouter un model"/>
-                <select onChange={(e)=>setidmarque(e.target.value)} value={idmarque}>
-                    {listemarque?.map((marque)=> (
-                        <option value={marque.id_marque} key={marque.id_marque}>{marque.name}</option>
-                    ))}
-                </select>
-                <button type="submit">soumettre</button>
-            </form>
+                <form onSubmit={Handlemodel}>
+                    <input onChange={(e)=>setmodel(e.target.value)} value={model} type="text" placeholder="ajouter un model"/>
+                    <select onChange={(e)=>setidmarque(e.target.value)} value={idmarque}>
+                        {listemarque?.map((marque)=> (
+                            <option value={marque.id_marque} key={marque.id_marque}>{marque.name}</option>
+                        ))}
+                    </select>
+                    <button type="submit">soumettre</button>
+                </form>
 
-            <form onSubmit={Handlevehicule}>
-                <input onChange={(e)=>setnameVoiture(e.target.value)} type="text" value={nameVoiture} placeholder="ajouter une motorisation"/>
+                <form onSubmit={Handlevehicule}>
+                    <input onChange={(e)=>setnameVoiture(e.target.value)} type="text" value={nameVoiture} placeholder="ajouter une motorisation"/>
 
-                <select onChange={(e)=>setidmodel(e.target.value)} value={idmodel}>
-                    {listemodel.map((model)=> (
-                        <option key={model.id_model} value={model.id_model}>
-                            {model.marque_name} {model.model_name} 
-                        </option>
-                    ))}
-                </select>
-                <select onChange={(e)=>setidannees(e.target.value)} value={idannees}>
-                    {listeannees.map((annees)=>(
-                        <option value={annees.id_annees} key={annees.id_annees}>
-                            {annees.name}
-                        </option>
-                    ))}
-                </select>
-                <button type="submit">soumettre</button>
-            </form>
-           
+                    <select onChange={(e)=>setidmodel(e.target.value)} value={idmodel}>
+                        {listemodel.map((model)=> (
+                            <option key={model.id_model} value={model.id_model}>
+                                {model.marque_name} {model.model_name} 
+                            </option>
+                        ))}
+                    </select>
+                    <select onChange={(e)=>setidannees(e.target.value)} value={idannees}>
+                        {listeannees.map((annees)=>(
+                            <option value={annees.id_annees} key={annees.id_annees}>
+                                {annees.name}
+                            </option>
+                        ))}
+                    </select>
+                    <button type="submit">soumettre</button>
+                </form>
+            </div>
         </div>
     )
 }

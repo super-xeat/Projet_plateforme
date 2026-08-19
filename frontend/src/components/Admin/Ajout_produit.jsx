@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useAuth } from "../context/authcontexte"
+import { useAuth } from "../../context/authcontexte"
 import './Ajout_produit.css'
 
 export default function Ajout_produit({onbutton}) {

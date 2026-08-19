@@ -1,4 +1,7 @@
 
+body {
+    font-family: 'Inter';
+}
 
 .admin {
     background-color: rgb(40, 39, 39);
@@ -6,4 +9,63 @@
     height: 100vh;
     width: 100%;
     position: relative;
+    overflow-x: none;
+} 
+
+.sidebar {
+    background-color: black;
+    width: 20%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.sidebar2 {
+    padding: 5%;
+}
+
+.navbar_admin {
+    background-color: black;
+    position: absolute;
+    top: 0;
+    width: 80%;
+    left: 20%;
+    height: 10vh;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container button {
+    margin-top: 5%;
+    width: 70%;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: gray;
+}
+
+.btn {
+    margin-bottom: 5%;
+    background: none;
+    height: 10vh;
+    font-size: large;
+    color: grey;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+
+.btn:hover {
+    color: aliceblue;
+}
+.container button:hover {
+    color: antiquewhite;
 }

@@ -1,6 +1,6 @@
 
 import { useEffect } from "react";
-import { useAuth } from "../context/authcontexte";
+import { useAuth } from "../../context/authcontexte";
 import { useState } from "react";
 
 

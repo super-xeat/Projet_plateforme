@@ -2,10 +2,10 @@
 
 .accueil {
     background-color: rgb(36, 36, 36);
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    
+    flex-direction: column;
 }
 
 .accueil1 {
@@ -13,6 +13,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
+}
+
+.accueil_page1 {
+    display: flex;
+    height: 100vh;
 }
 
 .accueil-titre1 {
@@ -96,3 +102,9 @@
     background-color: red;
     border-radius: 10px;
 }
+
+.accueil3 {
+    background-color: blue;
+    height: 100vh;
+}
+
