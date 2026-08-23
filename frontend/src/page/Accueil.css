@@ -104,7 +104,23 @@
 }
 
 .accueil3 {
-    background-color: blue;
+    background-color: rgb(36, 36, 36);
     height: 100vh;
+    padding: 2%;
 }
 
+.liste_categorie {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2%;
+    padding: 2%;
+}
+
+.image_categorie {
+    width: 100%;
+}
+
+.categorie_card {
+    display: flex;
+    flex-direction: column;
+}

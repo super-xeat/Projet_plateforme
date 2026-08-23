@@ -58,15 +58,15 @@ export default function Accueil() {
                 </div>
             </div>
             </div>
+            <hr />
             <div className="accueil3">
                 <h1>Categorie</h1>
 
-                <div>
+                <div className='liste_categorie'>
                     {listeCategorie.map((categorie)=>(
-                        <div key={categorie.id_categorie}>
-                            {categorie.name}
-                            
-                            <img src={categorie.image}/>
+                        <div key={categorie.id_categorie} className='categorie_card'>
+                            <h2>{categorie.name}</h2>          
+                            <img src={categorie.image} className='image_categorie'/>
                         </div>
                     ))}
                 </div>

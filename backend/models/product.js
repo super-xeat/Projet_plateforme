@@ -51,3 +51,28 @@ export const Obtenir_vehicule = async() => {
     return result
 }
     
+
+const Obtenir_produit_sql = `SELECT *
+                            FROM product
+                            JOIN categorie
+                            ON product.id_categorie = categorie.id_categorie
+                            WHERE product.id_categorie = ?`
+
+export const Obtenir_product = async(id_categorie) => {
+    const [result] = await db.query(Obtenir_produit_sql, [id_categorie])
+    return result
+}
+
+
+const Obtenir_produit_card_sql = `SELECT * FROM product WHERE id_product = ?`
+export const Obtenir_product_card = async(id_product) => {
+    const [result] = await db.query(Obtenir_produit_card_sql, [id_product])
+    return result
+}
+
+
+const Product_sql = `SELECT * FROM product`
+export const Obtenir_products = async() => {
+    const [result] = await db.query(Product_sql)
+    return result
+}

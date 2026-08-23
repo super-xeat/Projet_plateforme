@@ -6,7 +6,11 @@ import Accueil from './page/Accueil';
 import Navbar from './components/navbar';
 import Profil from './page/profil';
 import AdminLayout from './context/AdminLayout';
+import Catalogue from './components/catalogue';
+import ProductCard from './components/product_card';
 import './app.css'
+
+
 
 function Main() {
   return(
@@ -28,7 +32,9 @@ export default function App() {
             <Route path='/' element={<Accueil/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/login' element={<Login/>}/>
-            <Route path='/profil' element={<Profil/>}/>         
+            <Route path='/profil' element={<Profil/>}/>
+            <Route path='/catalogue' element={<Catalogue/>}/>     
+            <Route path='/product_card/:id_product' element={<ProductCard/>}/>
           </Route>
 
           

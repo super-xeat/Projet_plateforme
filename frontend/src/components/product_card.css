@@ -1,0 +1,101 @@
+.Product_card {
+    background-color: rgb(57, 56, 56);
+    color: rgb(196, 194, 194);
+    min-height: 100vh;
+    padding: 3%;
+    box-sizing: border-box;
+}
+
+.product {
+    display: flex;
+    gap: 4%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h5 {
+    color: yellow;
+}
+.image_product {
+    width: 45%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.container_product {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.name {
+    margin: 0 0 1rem 0;
+    font-size: 1.8rem;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+}
+
+.container_product2 {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stock_selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #666;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.stock_selector button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 900;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.stock_selector button:hover {
+    background-color: #555;
+}
+
+.stock_selector span {
+    padding: 0 1rem;
+    font-weight: 600;
+}
+
+.btn_panier {
+    flex: 1;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #e63946;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn_panier:hover {
+    background-color: #c9303d;
+}
+
+
+.voir_panier {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 8px;
+    color: aliceblue;
+    background-color: rgb(23, 23, 23);
+    border: 1px solid gray;
+}

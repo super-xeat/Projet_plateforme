@@ -1,9 +1,14 @@
+ 
 import { 
     Get_categorie_service,
     Get_marque_service,
     Get_model_service,
     Get_annees_service,
-    Obtenir_vehicule_service
+
+    Obtenir_vehicule_service,
+    Obtenir_product_service,
+    Obtenir_product_card_service,
+    Obtenir_products_all_service
  } from "../services/productService.js"
 
 
@@ -72,5 +77,55 @@ export const Obtenir_vehicule_controller = async(req, res) => {
 
     } catch (error) {
         console.log('erreur get du controller :', error)       
+    }
+}
+
+
+export const Obtenir_produit_controller = async(req, res) => {
+    try {
+        const {id_categorie} = req.params
+        const result = await Obtenir_product_service(id_categorie)
+
+        return res.status(200).json({
+            'listeProduct': result,
+            'message': 'product success'
+        })
+
+    } catch(error) {
+        console.log('erreur du controller :', error)
+        return res.status(error.status || 500).json({
+            'message': error.message || 'Erreur serveur'
+        })
+    }
+}
+
+export const Obtenir_produit_card_controller = async(req, res) => {
+    try {
+        const {id_product} = req.params
+        const result = await Obtenir_product_card_service(id_product)
+        return res.status(200).json({
+            'listeproductcard': result,
+            'message': 'product success'
+        })
+        
+    } catch(error) {
+        console.log('erreur du controller :', error)
+        return res.status(500).json({
+            'message': 'Erreur serveur'
+        })
+    }
+}
+
+export const Obtenir_product_all_controller = async(req, res) => {
+
+    try {
+        const result = await Obtenir_products_all_service()
+        return res.status(200).json({
+            'productAll': result
+        })
+
+    } catch (error) {
+        console.log('error :', error)
+        return res.status(500).json({'message': 'erreur serveur'})
     }
 }

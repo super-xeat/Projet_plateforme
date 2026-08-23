@@ -76,7 +76,6 @@ export default function Authprovider({children}) {
         try {
             const response = await fetch('http://localhost:8000/api/product/obtenir_categorie', {
                 method: 'GET',
-                credentials: 'include'
             })
             if (response.ok) {
                 const data = await response.json()
@@ -91,7 +90,6 @@ export default function Authprovider({children}) {
         try {
             const response = await fetch('http://localhost:8000/api/product/obtenir_marque', {
                 method: 'GET',
-                credentials: 'include'
             })
             if (response.ok) {
                 const data = await response.json()
@@ -106,7 +104,6 @@ export default function Authprovider({children}) {
         try {
             const response = await fetch('http://localhost:8000/api/product/obtenir_model', {
                 method: 'GET',
-                credentials: 'include'
             })
             if (response.ok) {
                 const data = await response.json()
@@ -121,7 +118,6 @@ export default function Authprovider({children}) {
         try {
             const response = await fetch('http://localhost:8000/api/product/obtenir_annees', {
                 method: 'GET',
-                credentials: 'include',
             })
             if (response.ok) {
                 const data = await response.json()
@@ -136,7 +132,6 @@ export default function Authprovider({children}) {
         try {
             const response = await fetch('http://localhost:8000/api/product/obtenir_vehicule', {
                 method: 'GET',
-                credentials: 'include',
             })
             if (response.ok) {
                 const data = await response.json()

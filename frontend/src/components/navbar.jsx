@@ -11,7 +11,7 @@ export default function Navbar() {
             <div className="navbar">
                 <div className="navbar1">
                     <div>AutoPIECE</div>
-                    <Link>catalogue</Link>
+                    <Link to={'/catalogue'}>catalogue</Link>
                 </div>
  
                 <div className="recherche-navbar">
