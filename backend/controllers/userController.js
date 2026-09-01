@@ -44,6 +44,7 @@ export const Login_controller = async(req, res) => {
             'id': user.id_user,
             'pseudo': user.pseudo,
             'role': user.role,
+            'email': user.email,
             'message': 'utilisateur trouvé avec succés'
         }
         console.log('user :', user_trouver)

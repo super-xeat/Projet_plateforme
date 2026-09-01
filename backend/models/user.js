@@ -19,7 +19,7 @@ export const find_user = async(nom, email) => {
         
 
 
-const sql_login = `SELECT id_user, pseudo, role, mot_de_passe FROM user WHERE email= ?`
+const sql_login = `SELECT id_user, pseudo, role, mot_de_passe, email FROM user WHERE email= ?`
 
 export const Login = async(email) => {
     const user = await db.query(sql_login, [email])

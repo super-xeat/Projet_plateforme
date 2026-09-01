@@ -7,6 +7,8 @@ import './product_card.css'
 export default function ProductCard() {
 
     const [product, setproduct] = useState([])
+    const [mode, setmode] = useState('description')
+    const [chiffre, setchiffre] = useState(0)
     const {id_product} = useParams()
 
     async function ProductCard_detail(id_product) {
@@ -47,9 +49,9 @@ export default function ProductCard() {
                                 
                                 <div className="container_product2">
                                     <div className="stock_selector">
-                                        <button>-</button>
-                                        <span>0</span>
-                                        <button>+</button>
+                                        <button onClick={()=>setchiffre(chiffre - 1)}>-</button>
+                                        <span>{chiffre}</span>
+                                        <button onClick={()=>setchiffre(chiffre + 1)}>+</button>
                                     </div>
 
                                     <button className="btn_panier">Ajouter au panier</button>
@@ -62,7 +64,44 @@ export default function ProductCard() {
                     </div>
                 )}            
             </div>
-            <h3>{product.description}</h3> 
+
+            <br /><br /><br /><br />
+
+            <div className="button_mode">
+                {mode === 'description' ? (
+                    <button onClick={()=>setmode('description')} style={{
+                        color: 'white'
+                    }}>Description</button>
+                ) : (
+                    <button onClick={()=>setmode('description')}>Description</button>
+                )}
+
+                {mode === 'info' ? (
+                    <button onClick={()=>setmode('info')} style={{
+                        color: 'white'
+                    }}>Info</button>
+                ) : (
+                    <button onClick={()=>setmode('info')}>Info</button>
+                )}
+                <button onClick={()=>setmode('livraison')}>Livraison</button>           
+            </div>
+
+            <br />
+            <br />
+            {mode === 'description' && (
+                <div>
+                    {product.description}
+                </div> 
+                
+            )}
+
+            {mode === 'info' && (
+                <div className="info">
+                    <p>Livraison gratuite dès 50 euro d'achat</p>
+                    <p>Garantie 2 ans</p>
+                    <p>Retour gratuit sous 30 jours</p>
+                </div>
+            )}
         </div>
     )
 }

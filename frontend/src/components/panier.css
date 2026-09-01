@@ -1,0 +1,158 @@
+
+
+.panier {
+    background-color: rgb(13, 13, 13);
+    height: 100vh;
+    color: red;
+    
+    padding: 3rem;
+    
+}
+
+.titre {
+    padding-bottom: 1rem;
+}
+
+.nb_article {
+    padding-bottom: 2rem;
+    color: aliceblue;
+}
+.panier1 {
+    display: flex;
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+
+.panier2 {
+    flex: 3;
+    color: aliceblue;
+}
+
+.formulaire {
+    flex: 1;
+    background-color: rgb(30, 30, 30);
+    margin-left: 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+
+.sous-total {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.livraison {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.btn-commande {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.btn-commande button {
+    border: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+
+.panier_image {
+    width: 20%;
+    border-radius: 10px;
+}
+
+.panier_card {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    background-color: rgb(23, 23, 23);
+    padding: 1rem;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+
+.panier_card2 {
+    padding-left: 2rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card_panier {
+    display: flex;
+    
+}
+
+.panier_card2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.panier_button {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.btn1 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
+    border-radius: 5px 0 0 5px;
+    color: aliceblue;
+    background: none;
+    border: 1px solid gray;
+    border-right: none;
+    font-weight: 900;
+}
+
+.stock {
+    padding: 0.5rem;
+    border: 1px solid gray;
+    border-left: none;
+    border-right: none;
+}
+
+.btn2 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+    color: aliceblue;
+    background: none;
+    border: 1px solid gray;
+    border-left: none;
+    font-weight: 900;
+}
+
+
+.lien_product {
+    text-decoration: none;
+    color: aliceblue;
+    
+}

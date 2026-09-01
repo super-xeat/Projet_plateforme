@@ -11,10 +11,17 @@
     padding-right: 5px;
 }
 
+.logo {
+    color: red;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
 .navbar1 {
     display: flex;
     flex: 1;
     gap: 5px;
+    align-items: center;
+    gap: 10%;
 }
 
 .recherche-navbar {
@@ -28,5 +35,12 @@
     display: flex;
     flex: 1;
     gap: 5px;
+    justify-content: flex-end;
+    gap: 10%;
 }
 
+
+.navbar_catalogue {
+    text-decoration: none;
+    color: aliceblue;
+}

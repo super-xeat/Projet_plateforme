@@ -1,5 +1,5 @@
 .Product_card {
-    background-color: rgb(57, 56, 56);
+    background-color: rgb(33, 32, 32);
     color: rgb(196, 194, 194);
     min-height: 100vh;
     padding: 3%;
@@ -98,4 +98,29 @@ h5 {
     color: aliceblue;
     background-color: rgb(23, 23, 23);
     border: 1px solid gray;
+}
+
+.button_mode {
+    border: 1px solid gray;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0rem;
+}
+
+.button_mode button {
+    margin-right: 1rem;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    color: gray;
+}
+
+
+.info p {
+    border: 1px solid gray;
+    margin-bottom: 1rem;
+    padding: 1rem;
 }

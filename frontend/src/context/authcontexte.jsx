@@ -19,21 +19,26 @@ export default function Authprovider({children}) {
     const [listemodel, setlistemodel] = useState([])
     const [listeannees, setlisteannees] = useState([])
     const [listeVehicule, setlisteVehicule] = useState([])
+    const [loading, setloading] = useState(true)
 
     const navigate = useNavigate()
 
     async function refresh() {
+        setloading(true)
         try {
             const response = await fetch('http://localhost:8000/api/me', {
                 credentials:'include'
             })
             if (response.ok) {
                 const data = await response.json()
+
                 setprofil(data.user)
-                console.log('vous etes reconnecté')
+                console.log('vous etes reconnecté', data.user)
             }
         } catch (error) {
             console.log('erreur :', error)
+        } finally {
+            setloading(false)
         }
     }
 
@@ -57,9 +62,10 @@ export default function Authprovider({children}) {
             if (response.ok) {
                 const data = await response.json()
                 setprofil(data)
-                console.log('profil :', profil)
+                setloading(false)
                 
-                if (profil.role === 'admin') {
+                
+                if (data.role === 'admin') {
                     navigate('/admin')
                 } else {
                     navigate('/profil')
@@ -69,6 +75,8 @@ export default function Authprovider({children}) {
 
         } catch (error) {
             console.log('erreur :', error)
+        } finally {
+            setloading(false)
         }
     }
 
@@ -142,6 +150,7 @@ export default function Authprovider({children}) {
         }
     }
 
+    console.log('profil context :', profil)
     return(
         <authContext.Provider value={{
             Login, 
@@ -155,7 +164,9 @@ export default function Authprovider({children}) {
             Get_annees,
             listeannees,
             Get_vehicule,
-            listeVehicule
+            listeVehicule,
+            loading,
+            setloading
             }}>
             {children}
         </authContext.Provider>
