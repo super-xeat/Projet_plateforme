@@ -57,3 +57,8 @@ const sql_delete_categorie = `DELETE FROM categorie WHERE id_categorie = ?`
 export const Delete_categorie = async(id_categorie) => {
     await db.query(sql_delete_categorie, [id_categorie])
 }
+
+const sql_delete = `DELETE FROM product WHERE id_product = ?`
+export const delete_product = async(id_product) => {
+    await db.query(sql_delete, [id_product])
+}

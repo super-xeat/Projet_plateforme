@@ -8,7 +8,9 @@ import {
     Obtenir_vehicule,
     Obtenir_product,
     Obtenir_product_card,
-    Obtenir_products
+    Obtenir_products,
+
+    Recherche_product
  } from "../models/product.js"
 
 
@@ -78,3 +80,21 @@ export const Obtenir_products_all_service = async() => {
     }
     return result
 }
+
+export const Recherche_product_service = async(query) => {
+    
+    const {marque, model, vehicule, annees} = query
+    if (!marque && !model && !vehicule && !annees) {
+        throw {status: 400, 'message': 'il y a aucun champ'}
+    }
+    const result = await Recherche_product(query)
+    console.log('result :', result)
+
+    
+    if (result.length === 0) {
+        throw {status: 400, 'message': 'aucun produit'}
+    }
+
+    return result
+}
+

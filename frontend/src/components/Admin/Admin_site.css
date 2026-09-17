@@ -1,0 +1,132 @@
+
+
+.product_admin_site {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    top: 10vh;
+    left: 23%;
+    width: 73%;
+    height: 90vh;
+    color: black;
+    position: absolute;
+}
+
+.btn_admin {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    margin-top: 2rem;
+    border-bottom: 2px solid rgb(131, 130, 130);
+}
+
+.btn_admin button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 900;
+    
+}
+
+.cate_container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tableau {
+    display: flex;
+    border-bottom: 1px solid grey;
+    padding-bottom: 1rem;
+}
+
+.tableau1 {
+    flex: 2.5;
+    margin-left: 1rem;
+}
+
+
+.tableau2 {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 3.5rem;
+    
+}
+
+
+
+.product_filtre {
+    color: whitesmoke;
+    display: flex;
+    flex-direction: row;   
+    background-color: rgb(47, 46, 46);
+    border: 1px solid grey;
+    border-top: none;
+    height: 10vh;
+    padding-right: 2rem;
+}
+
+.product_filtre:hover {
+    background-color: rgb(74, 73, 73);
+}
+
+.product_filtre1 {
+    display: flex;
+    flex: 1.4;
+    align-items: center;
+
+}
+
+.product_filtre2 {
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.product_filtre2 :nth-child(2) {
+    color: red;
+    font-weight: 600;
+}
+
+.product_filtre2 h3 {
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+.admin_site_container {
+    background-color: rgb(7, 7, 7);
+    max-height: 68vh;
+    padding: 1rem;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 10px;
+    color: aliceblue;
+    border: 1px solid grey;
+}
+
+.admin_container2 {
+    width: 100%;
+}
+
+.admin_image {
+    width: 5rem;
+    padding: 0.5rem;
+    border-radius: 15px;
+}
+
+.trash {
+    display: flex;
+    align-items: center;
+}
+
+.trash button {
+    background: none;
+    border: none;
+}
+
+.trash button:hover {
+    color: rgb(134, 134, 134);
+}

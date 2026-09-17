@@ -8,7 +8,8 @@ import {
 
     Ajout_produit_Controller,
 
-    Delete_categorie_controller
+    Delete_categorie_controller,
+    delete_product_controller
 } from '../controllers/AdminController.js';
 
 import { Authentificate, Autorisation } from "../middleware/verif_token.js";
@@ -23,6 +24,7 @@ routeAdmin.post('/creation_model', Authentificate, Autorisation, Ajout_model_con
 routeAdmin.post('/creation_vehicule', Authentificate, Autorisation, Creation_vehicule_controller)
 routeAdmin.post('/ajout_produit', Authentificate, Autorisation, Ajout_produit_Controller)
 routeAdmin.delete('/delete_categorie/:id', Authentificate, Autorisation, Delete_categorie_controller)
+routeAdmin.delete('/supprimer_produit/:id_product', Authentificate, Autorisation, delete_product_controller )
 
 
 export default routeAdmin

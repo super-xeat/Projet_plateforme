@@ -3,6 +3,22 @@
     background-color: rgb(68, 67, 67);
     padding: 1%;
     min-height: 100vh;
+    
+}
+
+.piece {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.categorie_card {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tous {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .categorie_catalogue {
@@ -35,7 +51,7 @@
 
 .product_card {
     background-color: rgb(26, 26, 26);
-    
+    border-radius: 10px;
 }
 
 .link {
@@ -44,4 +60,25 @@
 }
 .card_image {
     width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+
+.card_name {
+    padding: 0.5rem;
+}
+
+.panier_btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    color: aliceblue;
+}
+
+.btn_ajouter {
+    background-color: red;
+    color: aliceblue;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: none;
+    border-radius: 5px;
 }

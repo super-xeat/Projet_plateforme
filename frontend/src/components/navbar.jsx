@@ -13,7 +13,7 @@ export default function Navbar() {
             <div className="navbar">
                 <div className="navbar1">
                     <Link to={'/'} className='logo'>AutoPIECE</Link>
-                    <Link to={'/catalogue'} className='navbar_catalogue'>catalogue</Link>
+                    <Link to={'/catalogue/:id_catalogue'} className='navbar_catalogue'>catalogue</Link>
                 </div>
  
                 <div className="recherche-navbar">

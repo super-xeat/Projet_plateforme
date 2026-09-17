@@ -8,7 +8,8 @@ import {
 
     Ajout_produit_service,
 
-    Delete_categorie_service
+    Delete_categorie_service,
+    delete_product_service
  } from "../services/AdminService.js";
 
 
@@ -100,5 +101,22 @@ export const Delete_categorie_controller = async(id_categorie) => {
         return res.status(201).json({'message': `categorie supprimé`})
     } catch (error) {
         console.log('erreur :', error)
+    }
+}
+
+
+export const delete_product_controller = async(req, res) => {
+
+    try {
+        const {id_product} = req.params
+        await delete_product_service(id_product)
+
+        return res.status(200).json({'message': 'produit supprimé'})
+
+    } catch (error) {
+        console.log('erreur :', error)
+        return res.status(500).json({
+            'message': 'probleme dans le delete controller'
+        })
     }
 }

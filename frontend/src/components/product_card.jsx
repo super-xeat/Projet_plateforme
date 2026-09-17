@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../context/authcontexte";
+import { Link } from "react-router-dom";
 import './product_card.css'
 
 
@@ -9,6 +11,8 @@ export default function ProductCard() {
     const [product, setproduct] = useState([])
     const [mode, setmode] = useState('description')
     const [chiffre, setchiffre] = useState(0)
+
+    const {profil, Ajouter_Panier} = useAuth()
     const {id_product} = useParams()
 
     async function ProductCard_detail(id_product) {
@@ -54,11 +58,11 @@ export default function ProductCard() {
                                         <button onClick={()=>setchiffre(chiffre + 1)}>+</button>
                                     </div>
 
-                                    <button className="btn_panier">Ajouter au panier</button>
+                                    <button className="btn_panier" onClick={()=>Ajouter_Panier(id_product, chiffre, profil.id_user)}>Ajouter au panier</button>
                                 </div>               
                             </div>
                             
-                            <button className="voir_panier">voir le panier</button>
+                            <Link to={'/panier'} className="voir_panier">voir le panier</Link>
                         </div>
                         
                     </div>

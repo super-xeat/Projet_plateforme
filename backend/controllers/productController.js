@@ -8,7 +8,9 @@ import {
     Obtenir_vehicule_service,
     Obtenir_product_service,
     Obtenir_product_card_service,
-    Obtenir_products_all_service
+    Obtenir_products_all_service,
+
+    Recherche_product_service
  } from "../services/productService.js"
 
 
@@ -129,3 +131,23 @@ export const Obtenir_product_all_controller = async(req, res) => {
         return res.status(500).json({'message': 'erreur serveur'})
     }
 }
+
+
+export const Recherche_product_controller = async(req, res) => {
+
+    try {
+        const query = req.query
+
+        const result = await Recherche_product_service(query)
+        console.log('result controller :', result)
+        return res.status(200).json({
+            'result': result
+        })
+
+    } catch (error) {
+        console.log('erreur controller :', error)
+        return res.status(400).json({'message': error})
+    }
+}
+
+

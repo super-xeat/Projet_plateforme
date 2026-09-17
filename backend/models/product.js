@@ -76,3 +76,46 @@ export const Obtenir_products = async() => {
     const [result] = await db.query(Product_sql)
     return result
 }
+
+
+
+
+export const Recherche_product = async(query) => {
+    const {marque, model, vehicule, annees} = query
+
+    let recherche_sql = `SELECT * FROM product
+                       JOIN product_vehicule
+                       ON product_vehicule.id_product = product.id_product
+                       JOIN vehicule
+                       ON product_vehicule.id_vehicule = vehicule.id_vehicule
+                       JOIN model
+                       ON vehicule.id_model = model.id_model
+                       JOIN marque
+                       ON marque.id_marque = model.id_marque
+                       JOIN annees
+                       ON vehicule.id_annees = annees.id_annees
+                       WHERE 1=1`
+                       
+    let value = []
+    if (marque) {
+        recherche_sql += ` AND marque.name = ?`
+        value.push(marque)
+    }
+    if (model) {
+        recherche_sql += ` AND model.name = ?`
+        value.push(model)
+    }
+    if (annees) {
+        recherche_sql += ` AND annees.name = ?`
+        value.push(annees)
+    }
+    if (vehicule) {
+        recherche_sql += ` AND vehicule.name = ?`
+        value.push(vehicule)
+    }
+
+    const [result] = await db.query(recherche_sql, value)
+    return result
+} 
+
+

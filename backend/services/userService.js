@@ -22,6 +22,10 @@ export const UserService_create = async(nom, prenom, email, mdp, adresse, pseudo
 
 export const Login_service = async(email, password) => {
 
+    if (!email || !password) {
+        throw {status: 400, 'messsage': 'il manque un champs'}
+    }
+    
     const user_result = await Login(email)
     
     if (!user_result) {

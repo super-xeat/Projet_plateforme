@@ -38,6 +38,29 @@ export default function Panier() {
         }
     }
 
+    const Create_commande = async(id_user, adresse, result) => {
+        try {
+            const response = await fetch('http://localhost:8000/api/commande/create_commande', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify({
+                    date: new Date().toLocaleDateString('fr-FR'),
+                    statut: 'en cours',
+                    montant_total: result,
+                    id_user: id_user,
+                    adresse: adresse
+                })
+            })
+
+            if (response.ok) {
+                alert('commande envoyé')
+            }
+        } catch (error) {
+            console.log('erreur :', error)
+        }
+    }
+
     function decremente(id, quantityPanier) {
         setpanier(panier.map(produit => id === produit.id_product ? ({...produit, quantity: quantityPanier - 1}) : produit ) )
         
@@ -50,7 +73,6 @@ export default function Panier() {
     }
 
     
-
     useEffect(()=> {
         
         if (loading) return
@@ -110,7 +132,7 @@ export default function Panier() {
                             <h4>{result}</h4>
                         </div>
                         <div className="btn-commande">
-                            <button>Passez commande</button>
+                            <button onClick={()=>Create_commande(profil.id_user, profil.adresse, result)}>Passez commande</button>
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ import AdminCreation from "../components/Admin/Admin_Creation"
 import AdminGestion from "../components/Admin/Admin_Gestion"
 import Admin_commande from "../components/Admin/Admin_commande"
 import Admin_profil from "../components/Admin/Admin_profil"
+import Admin_site from "../components/Admin/Admin_site"
 import './Admin.css'
 
 
@@ -53,9 +54,7 @@ export default function Admin() {
 
             {Actifpage === 'site' && (
                 <div>
-                    <h1>gestion du site</h1>
-                    <h3>supprimer des utilisateur, produit, ou données de votre bdd</h3>
-                    <AdminGestion/>
+                    <Admin_site/>
                 </div>
             )}
 

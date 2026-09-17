@@ -8,7 +8,10 @@ import {
     Obtenir_vehicule_controller,
     Obtenir_produit_controller,
     Obtenir_produit_card_controller,
-    Obtenir_product_all_controller
+    Obtenir_product_all_controller,
+
+    Recherche_product_controller
+    
 } from "../controllers/productController.js";
 
 import { Router } from "express";
@@ -25,5 +28,7 @@ routeProduct.get('/obtenir_vehicule', Obtenir_vehicule_controller)
 routeProduct.get('/obtenir_product/:id_categorie', Obtenir_produit_controller)
 routeProduct.get('/obtenir_product_card/:id_product', Obtenir_produit_card_controller)
 routeProduct.get('/obtenir_all', Obtenir_product_all_controller)
+
+routeProduct.get('/recherche_product', Recherche_product_controller)
 
 export default routeProduct

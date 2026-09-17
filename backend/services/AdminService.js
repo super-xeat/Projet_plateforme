@@ -9,7 +9,8 @@ import {
     Ajout_product,
     Ajout_liaison_vehicule,
 
-    Delete_categorie
+    Delete_categorie,
+    delete_product
  } from "../models/admin.js";
 
 
@@ -83,4 +84,13 @@ export const Delete_categorie_service = async(id_categorie) => {
     }
 
     await Delete_categorie(id_categorie)
+}
+
+export const delete_product_service = async(id_product) => {
+
+    if (!id_product) {
+        throw {statut: 400, 'message': 'il manque id_product'}
+    }
+
+    await delete_product(id_product)
 }
