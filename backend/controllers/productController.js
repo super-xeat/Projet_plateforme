@@ -13,8 +13,9 @@ import {
     Recherche_product_service
  } from "../services/productService.js"
 
-
+import { total_cate_product, total_product_all } from "../models/product.js"
  
+
 export const Get_categorie_controller = async(req, res) => {
     try {
         const result = await Get_categorie_service()
@@ -86,10 +87,16 @@ export const Obtenir_vehicule_controller = async(req, res) => {
 export const Obtenir_produit_controller = async(req, res) => {
     try {
         const {id_categorie} = req.params
-        const result = await Obtenir_product_service(id_categorie)
+        const {valeur, page} = req.query
 
+        const result = await Obtenir_product_service(valeur, id_categorie, Number(page))
+        const total = await total_cate_product(Number(id_categorie))
+
+        
+        console.log('result :', result)
         return res.status(200).json({
             'listeProduct': result,
+            'total': total,
             'message': 'product success'
         })
 
@@ -120,11 +127,16 @@ export const Obtenir_produit_card_controller = async(req, res) => {
 
 export const Obtenir_product_all_controller = async(req, res) => {
 
+    const {page, valeur} = req.query
+
     try {
-        const result = await Obtenir_products_all_service()
+        const total = await total_product_all()
+        const result = await Obtenir_products_all_service(valeur, Number(page))
+
         return res.status(200).json({
-            'productAll': result
-        })
+            'productAll': result,
+            'total': total
+        }) 
 
     } catch (error) {
         console.log('error :', error)

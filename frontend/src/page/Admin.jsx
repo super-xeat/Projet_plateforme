@@ -3,7 +3,8 @@ import { useAuth } from "../context/authcontexte"
 import AdminCreation from "../components/Admin/Admin_Creation"
 import AdminGestion from "../components/Admin/Admin_Gestion"
 import Admin_commande from "../components/Admin/Admin_commande"
-import Admin_profil from "../components/Admin/Admin_profil"
+import Profil from "./profil"
+import { Link } from "react-router-dom"
 import Admin_site from "../components/Admin/Admin_site"
 import './Admin.css'
 
@@ -24,14 +25,14 @@ export default function Admin() {
                     <hr />
                     
                     <div className="container">
-                        <button onClick={()=>setActifpage('profil')}>Profil</button>
+                        <button onClick={()=>setActifpage('profil')}>Profil & tableau de bord</button>
                         <button onClick={()=>setActifpage('commande')}>Gestion des Commande</button>
                         <button onClick={()=>setActifpage('creation')}>gestion création</button>
                         <button onClick={()=>setActifpage('site')}>gestion du site</button>
                     </div>
                 </div>
 
-                <button className="btn">retour au site</button>
+                <button className="btn"><Link to={'/'}>retour au site</Link></button>
             </div>
             
             <div className="navbar_admin">
@@ -39,7 +40,7 @@ export default function Admin() {
             </div>
 
             {Actifpage === 'profil' && (
-                <Admin_profil/>
+                <Profil onmode={'admin'}/>
             )}
 
             

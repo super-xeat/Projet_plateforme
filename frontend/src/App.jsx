@@ -34,7 +34,7 @@ export default function App() {
             <Route path='/' element={<Accueil/>}/>
             <Route path='/register' element={<Register/>}/>
             <Route path='/login' element={<Login/>}/>
-            <Route path='/profil' element={<Profil/>}/>
+            <Route path='/profil' element={<Profil onmode={'client'}/>}/>
             <Route path='/catalogue' element={<Catalogue/>}/>
             <Route path='/catalogue/:id_catalogue' element={<Catalogue/>}/>     
             <Route path='/product_card/:id_product' element={<ProductCard/>}/>

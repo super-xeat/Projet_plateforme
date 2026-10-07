@@ -20,12 +20,6 @@ export const Ajout_model = async(model, id_marque) => {
     await db.query(sql_ajouter_model, [model, id_marque])
 }
 
-const sql_ajouter_categorie = `INSERT INTO categorie(name) VALUES (?)`
-
-export const Ajout_categorie = async(categorie) => {
-    await db.query(sql_ajouter_categorie, [categorie])
-}
-
 // -----------------------------------------------
 
 
@@ -50,13 +44,21 @@ export const Ajout_liaison_vehicule = async(values) => {
     await db.query(sql_liaison_product, [values]) 
 }
  
+const sql_count = `SELECT COUNT(*) AS total FROM product`
+export const total = async() => {
+    const [result_total] = await db.query(sql_count)
+    return result_total[0].total
+}
+
+const Product_sql = `SELECT * FROM product LIMIT ? OFFSET ?`
+export const Obtenir_products_admin = async(limit, offset) => {
+    const [result] = await db.query(Product_sql, [limit, offset])
+    return result
+}
+ 
 
 //----------------------------------------
 
-const sql_delete_categorie = `DELETE FROM categorie WHERE id_categorie = ?`
-export const Delete_categorie = async(id_categorie) => {
-    await db.query(sql_delete_categorie, [id_categorie])
-}
 
 const sql_delete = `DELETE FROM product WHERE id_product = ?`
 export const delete_product = async(id_product) => {

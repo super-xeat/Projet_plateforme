@@ -1,17 +1,17 @@
 
 import { 
     Ajout_annees_service,
-    Ajout_categorie_service,
     Ajout_model_service,
     Ajout_marque_service,
     Creation_vehicule_service,
 
     Ajout_produit_service,
-
-    Delete_categorie_service,
-    delete_product_service
+    delete_product_service,
+    Obtenir_product_admin_service
  } from "../services/AdminService.js";
 
+
+ import { total } from "../models/admin.js";
 
 export const Ajout_annees_controllers = async(req, res) => {
 
@@ -39,18 +39,6 @@ export const Ajout_marque_controllers = async(req, res) => {
     }
 }
 
-export const Ajout_categorie_controllers = async(req, res) => {
-
-    try {
-        const {categorie} = req.body
-        await Ajout_categorie_service(categorie)
-
-        return res.status(201).json({'message': 'categorie créer'})
-
-    } catch(error) {
-        console.error('error categorie controller :', error)
-    }
-}
 
 export const Ajout_model_controllers = async(req, res) => {
 
@@ -92,18 +80,6 @@ export const Ajout_produit_Controller = async(req, res) => {
     }
 }
 
-export const Delete_categorie_controller = async(id_categorie) => {
-
-    try {
-        const {id_categorie} = req.params
-        await Delete_categorie_service(id_categorie)
-
-        return res.status(201).json({'message': `categorie supprimé`})
-    } catch (error) {
-        console.log('erreur :', error)
-    }
-}
-
 
 export const delete_product_controller = async(req, res) => {
 
@@ -117,6 +93,28 @@ export const delete_product_controller = async(req, res) => {
         console.log('erreur :', error)
         return res.status(500).json({
             'message': 'probleme dans le delete controller'
+        })
+    }
+}
+
+
+export const obtenir_product_admin_controller = async(req, res) => {
+
+    try {
+        const {page} = req.query
+
+        const result_total = await total()
+        const obtenir_product = await Obtenir_product_admin_service(page)
+
+        return res.status(200).json({
+            'total': result_total,
+            'products': obtenir_product
+        })
+
+    } catch (error) {
+        console.log('erreur :', error)
+        return res.status(500).json({
+            'message': 'probleme dans le product admin controller'
         })
     }
 }

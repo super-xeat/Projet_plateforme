@@ -52,15 +52,40 @@ export const Obtenir_vehicule = async() => {
 }
     
 
-const Obtenir_produit_sql = `SELECT *
+const Obtenir_produit_sql = `SELECT 
+                            product.id_product,
+                            product.name AS product_name,
+                            product.description, 
+                            product.price, 
+                            product.image,
+                            categorie.name AS categorie_name
                             FROM product
                             JOIN categorie
                             ON product.id_categorie = categorie.id_categorie
-                            WHERE product.id_categorie = ?`
+                            WHERE product.name LIKE ? AND product.id_categorie = ? LIMIT ? OFFSET ?`
 
-export const Obtenir_product = async(id_categorie) => {
-    const [result] = await db.query(Obtenir_produit_sql, [id_categorie])
+export const Obtenir_product = async(motif, id_categorie, limit, offset) => {
+    const [result] = await db.query(Obtenir_produit_sql, [motif, id_categorie, limit, offset])
     return result
+}
+
+
+const Product_sql = `SELECT * FROM product WHERE name LIKE ? LIMIT ? OFFSET ?`
+export const Obtenir_products = async(motif, limit, offset) => {
+    const [result] = await db.query(Product_sql, [motif, limit, offset])
+    return result
+}
+ 
+const sql_total_product = `SELECT COUNT(*) AS total_product FROM product`
+export const total_product_all = async() => {
+    const [result] = await db.query(sql_total_product)
+    return result[0].total_product
+}
+
+const sql_total_product_cate = `SELECT COUNT(*) AS total_product FROM product WHERE id_categorie = ?`
+export const total_cate_product = async(id_categorie) => {
+    const [result] = await db.query(sql_total_product_cate, [id_categorie])
+    return result[0].total_product
 }
 
 
@@ -69,15 +94,6 @@ export const Obtenir_product_card = async(id_product) => {
     const [result] = await db.query(Obtenir_produit_card_sql, [id_product])
     return result
 }
-
-
-const Product_sql = `SELECT * FROM product`
-export const Obtenir_products = async() => {
-    const [result] = await db.query(Product_sql)
-    return result
-}
-
-
 
 
 export const Recherche_product = async(query) => {

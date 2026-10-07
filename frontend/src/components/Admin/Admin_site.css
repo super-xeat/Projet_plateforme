@@ -1,5 +1,6 @@
 
 
+
 .product_admin_site {
     display: flex;
     justify-content: flex-start;
@@ -35,91 +36,51 @@
     margin-bottom: 1rem;
 }
 
+/* -------------------------------------------- */
+
 .tableau {
-    display: flex;
-    border-bottom: 1px solid grey;
-    padding-bottom: 1rem;
-}
-
-.tableau1 {
-    flex: 2.5;
-    margin-left: 1rem;
-}
-
-
-.tableau2 {
-    flex: 2;
-    display: flex;
-    justify-content: space-around;
-    margin-right: 3.5rem;
-    
-}
-
-
-
-.product_filtre {
-    color: whitesmoke;
-    display: flex;
-    flex-direction: row;   
-    background-color: rgb(47, 46, 46);
-    border: 1px solid grey;
-    border-top: none;
-    height: 10vh;
-    padding-right: 2rem;
-}
-
-.product_filtre:hover {
-    background-color: rgb(74, 73, 73);
-}
-
-.product_filtre1 {
-    display: flex;
-    flex: 1.4;
-    align-items: center;
-
-}
-
-.product_filtre2 {
-    display: flex;
-    flex: 1;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.product_filtre2 :nth-child(2) {
-    color: red;
-    font-weight: 600;
-}
-
-.product_filtre2 h3 {
-    font-weight: 300;
-    font-size: 1rem;
-}
-
-.admin_site_container {
-    background-color: rgb(7, 7, 7);
-    max-height: 68vh;
-    padding: 1rem;
-    padding-left: 0;
-    padding-right: 0;
-    border-radius: 10px;
-    color: aliceblue;
-    border: 1px solid grey;
-}
-
-.admin_container2 {
     width: 100%;
 }
 
-.admin_image {
-    width: 5rem;
-    padding: 0.5rem;
-    border-radius: 15px;
+.tableau th:nth-child(1) {
+    width: 50%;
 }
+
+.tableau th:nth-child(2) {
+    width: 15%;
+}
+
+.tableau th:nth-child(3) {
+    width: 15%;
+}
+
+.tableau th:nth-child(4) {
+    width: 10%;
+}
+
+.tableau th:nth-child(5) {
+    width: 10%;
+}
+
+
+.ligne1 {
+    display: flex;
+}
+
+
+.admin_container2 td {
+    max-height: 15vh;
+}
+
+.admin_image {
+    width: 15%;
+}
+
 
 .trash {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .trash button {
@@ -129,4 +90,55 @@
 
 .trash button:hover {
     color: rgb(134, 134, 134);
+}
+
+td, th {
+    border: 1px solid rgb(127, 126, 126);
+}
+
+/* -------------------------------- */
+
+table {
+    background-color: rgb(12, 12, 12);
+    width: 100%;
+    color: aliceblue;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+tbody {
+    background-color: rgb(39, 38, 38);
+}
+
+
+thead th, tbody td , tfoot td {
+    text-align: center; 
+    vertical-align: middle;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.user_h2 {
+    color: aliceblue;
+    margin-left: 1rem;
+}
+
+/* -------------------------------------- */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.pagination h2 {
+    font-size: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.pagination button {
+    background: none;
+    color: aliceblue;
+    border: none;
 }

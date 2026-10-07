@@ -1,5 +1,12 @@
 
-import { create_user, find_user, Login } from "../models/user.js";
+import { create_user, 
+    find_user, 
+    Login, 
+    User_all,
+    obtenir_user,
+    update_user
+ } from "../models/user.js";
+
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import bcrypt from 'bcrypt'
@@ -49,4 +56,37 @@ export const Login_service = async(email, password) => {
     
     
     return {user, token}
+}
+
+
+export const User_all_service = async() => {
+
+    const users = await User_all()
+    if (users.length === 0) {
+        throw {status: 400, 'message':'liste de user vide'}
+    }
+
+    return users
+}
+
+export const obtenir_user_service = async(id_user) => {
+    if (!id_user) {
+        throw {status: 400, 'message': 'user inexistant'}
+    }
+    const user = await obtenir_user(id_user)
+    return user
+}
+
+export const update_user_service = async(body, id_user) => {
+
+    if (!body) {
+        throw {status: 400, 'message': 'body inexistant'}
+    }
+
+    if (!id_user) {
+        throw {status: 400, 'message': 'user inexistant'}
+    }
+    const user_update = await update_user(body, id_user)
+
+    return user_update
 }

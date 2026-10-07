@@ -1,43 +1,97 @@
 
 .Admin_creation {
-    position: absolute;
-    top: 10vh;
-    left: 25%;
-    width: 75%;
-    height: 90vh;
+  position: absolute;
+  top: 10vh;
+  left: 25%;
+  width: 70%;
+  padding: 2rem;
+  box-sizing: border-box;
+  max-height: 90vh;
+  overflow-y: auto;
+}
 
-} 
+.forms-grid form:last-of-type {
+    display: flex;
+}
 
+.forms-grid form {
+    margin-top: 2rem;
+}
 
 .conteneur1 {
-    width: 80%;
-    
+    border-bottom: 2px solid grey;
+    padding-bottom: 1rem;
+}
+
+.conteneur1 h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.conteneur1 p {
+    margin-top: 0.25rem;
 }
 
 .button1 {
     background-color: red;
-    height: 6vh;
-    border: none;
-    border-radius: 8px;
-    margin: 2%;
-    padding: 1%;
     color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
 }
 
 
-.conteneur2 {  
-    height: 80vh;  
+.input-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  height: 5vh;
 }
 
-.conteneur2 form {
-    display: flex;
-    flex-direction: row;
-    margin-top: 2%;
+.input-group input {
+    height: 5vh;
+    width: 50%;
+    border-radius: 5px;
+    background-color: rgb(15,15,15);
+    border: 1px solid grey;
+    padding-left: 0.5rem;
 }
 
-.conteneur2 button {
-    width: 10%;
-    margin-left: 1%;
+.admin-select {
+    width: 20%;
+    border-radius: 5px;
+    height: 4vh;
+}
+
+.btn-icon {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+}
+
+.btn-submit {
+  background-color: red;
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 0.3rem;
+  border: 1px solid white;
+}
+
+.btn-submit:hover {
+  background-color: #334155;
 }
 
 .conteneur2 select {
@@ -46,11 +100,20 @@
 }
 
 
-.conteneur2 input {
-    max-width: 80%;
-    width: 70%;
-    padding: 1%;
-    border-radius: 10px;
-    border: none;
-    background-color: rgb(178, 176, 176);
+.items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+  max-height: 120px;
+  overflow-y: auto;
+  border: 1px solid #f1f5f9;
+  border-radius: 6px;
+}
+
+.items-list li {
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.85rem;
+  background-color: rgb(31, 31, 31);
+  color: grey;
 }

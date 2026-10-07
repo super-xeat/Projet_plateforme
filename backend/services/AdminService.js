@@ -1,7 +1,6 @@
 
 import { 
     Ajout_annees,
-    Ajout_categorie,
     Ajout_model,
     Ajout_marque,
     Creation_vehicule,
@@ -9,8 +8,8 @@ import {
     Ajout_product,
     Ajout_liaison_vehicule,
 
-    Delete_categorie,
-    delete_product
+    delete_product,
+    Obtenir_products_admin
  } from "../models/admin.js";
 
 
@@ -30,13 +29,6 @@ export const Ajout_marque_service = async(marque) => {
     await Ajout_marque(marque)
 }
 
-export const Ajout_categorie_service = async(categorie) => {
-
-    if (!categorie || categorie.trim() === "") {
-        throw {status : 401, 'message': 'il manque un champs'}
-    }
-    await Ajout_categorie(categorie)
-}
 
 export const Ajout_model_service = async(model, id_marque) => {
 
@@ -78,13 +70,7 @@ export const Ajout_produit_service = async(name, description, price, image, id_c
 
 
 // --------------------------------------
-export const Delete_categorie_service = async(id_categorie) => {
-    if (!id_categorie) {
-        throw {status: 401, 'message': 'il manque un id'}
-    }
 
-    await Delete_categorie(id_categorie)
-}
 
 export const delete_product_service = async(id_product) => {
 
@@ -93,4 +79,16 @@ export const delete_product_service = async(id_product) => {
     }
 
     await delete_product(id_product)
+}
+
+export const Obtenir_product_admin_service = async(page) => {
+    if (!page) {
+        throw {status: 400, 'message': 'page introuvable'}
+    }
+
+    const limit = 5
+    const offset = (page - 1) * limit
+
+    const result = await Obtenir_products_admin(limit, offset)
+    return result
 }

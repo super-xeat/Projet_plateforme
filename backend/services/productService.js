@@ -55,8 +55,15 @@ export const Obtenir_vehicule_service = async() => {
 }
 
 
-export const Obtenir_product_service = async(id_categorie) => {
-    const result = await Obtenir_product(id_categorie)
+export const Obtenir_product_service = async(valeur, id_categorie, page) => {
+    if (!page) {
+        throw {status: 400, 'message': 'page introuvable'}
+    }
+    const motif = `%${valeur ?? ''}%`
+    const limit = 8
+    const offset = (page - 1) * limit
+
+    const result = await Obtenir_product(motif, id_categorie, limit, offset)
     if (result.length === 0) {
         throw {status: 404, 'message': 'liste vide'}
     }
@@ -73,8 +80,16 @@ export const Obtenir_product_card_service = async(id_product) => {
 }
 
 
-export const Obtenir_products_all_service = async() => {
-    const result = await Obtenir_products()
+export const Obtenir_products_all_service = async(valeur, page) => {
+    if (!page) {
+        throw {status: 400, 'message': 'page introuvable'}
+    }
+    
+    const motif = `%${valeur ?? ''}%`
+    const limit = 8
+    const offset = (page - 1) * limit
+
+    const result = await Obtenir_products(motif, limit, offset)
     if (result.length === 0) {
         throw {status: 404, 'message': 'liste vide'}
     }

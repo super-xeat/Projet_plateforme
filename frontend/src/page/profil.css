@@ -1,0 +1,112 @@
+
+.profil_title1 {
+    color: red;
+    font-size: 1rem;
+}
+
+span {
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.barre_profil {
+    height: 0.1vh;
+    background-color: rgb(187, 185, 185);
+    width: 60%;
+    margin-bottom: 2rem;
+}
+
+.profil_title2 {
+    margin-left: 1rem;
+    font-size: 2rem;
+    color: white;
+}
+
+.profil_title3 {
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.component_profil {
+    background-color: rgb(24, 23, 23);
+    height: 100vh;
+    color: grey;
+    padding: 2rem;
+}
+
+.component_profil button {
+    margin-right: 1rem;
+    background: none;
+    border: none;
+    color: grey;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+hr {
+    margin-bottom: 1rem;
+}
+
+.formulaire_profil {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulaire_profil input {
+    width: 50%;
+    color: rgb(114, 114, 114);
+    margin-bottom: 1rem;
+    height: 5vh;
+    background-color: rgb(59, 59, 59);
+    border: 1px solid grey;
+    padding-left: 1rem;
+    border-radius: 5px;
+}
+
+.formulaire_profil button {
+    background-color: red;
+    font-size: 1rem;
+    color: white;
+    width: 30%;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.5rem;
+}
+
+
+/* --------------------------------------- */
+
+
+.component_admin {
+    top: 15vh;
+    left: 25%;
+    width: 70%;
+    position: absolute;
+}
+
+.formulaire_profil_admin {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulaire_profil_admin input {
+    width: 100%;
+    color: rgb(114, 114, 114);
+    margin-bottom: 1rem;
+    height: 5vh;
+    background-color: rgb(59, 59, 59);
+    border: 1px solid grey;
+    padding-left: 1rem;
+    border-radius: 5px;
+}
+
+.formulaire_profil_admin button {
+    background-color: red;
+    font-size: 1rem;
+    color: white;
+    width: 30%;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.5rem;
+}
