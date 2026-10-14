@@ -1,19 +1,24 @@
 
 
-import { CommandeService } from "../services/commandeService.js";
+import { passer_commande_service } from "../services/commandeService.js";
+ 
+  
 
 
-export const commandeController = async(req, res) => {
 
+export const commande_panier_controller = async(req, res) => {
     try {
-        const {date, statut, montant_total, id_user, adresse_livraison} = req.body
+        
+        const id_user = req.user.id
 
-        const commande = await CommandeService(date, statut, montant_total, id_user, adresse_livraison)
+        console.log('id_user :', id_user)
+
+        await passer_commande_service(id_user)
 
         return res.status(201).json({
-            'commande': commande,
             'message': 'commande créé avec succés'
         })
+
     } catch (error) {
         console.log('erreur dans le controller :', error)
         return res.status(500).json({'message': 'erreur controller'})

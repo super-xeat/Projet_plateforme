@@ -45,7 +45,7 @@ export const ajouter_produit_panier = async(id_product, id_panier, quantity) => 
 }
 
 
-const sql_obtenir_panier = `SELECT p.id_product, p.name, p.description, p.price, p.image, p.stock, pp.quantity
+const sql_obtenir_panier = `SELECT p.id_product, p.name, p.description, p.price, p.image, p.stock, pp.quantity, pa.id_panier
                             from product p
                             JOIN product_panier pp ON p.id_product = pp.id_product
                             JOIN panier pa ON pa.id_panier = pp.id_panier
@@ -57,3 +57,22 @@ export const Obtenir_panier = async(id_user) => {
 }
 
 
+const sql_panier_delete = `DELETE from product_panier WHERE id_product = ? AND id_panier = ?`
+export const delete_product = async(id_product, id_panier) => {
+    await db.query(sql_panier_delete, [id_product, id_panier])
+}
+
+
+const sql_delete_all = `DELETE from product_panier WHERE id_panier = ?`
+export const delete_all = async(id_panier) => {
+    await db.query(sql_delete_all, [id_panier])
+}
+
+const sql_update = `UPDATE product_panier 
+                    SET quantity = ? 
+                    WHERE id_product = ? 
+                    AND id_panier = ?`
+
+export const update_quantity = async(quantity, id_product, id_panier) => {
+    await db.query(sql_update, [quantity, id_product, id_panier])
+}

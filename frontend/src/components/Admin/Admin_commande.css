@@ -1,0 +1,11 @@
+
+.Admin_commande {
+    position: absolute;
+    top: 10vh;
+    left: 25%;
+    width: 70%;
+    padding: 2rem;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+}

@@ -61,14 +61,12 @@ export default function Profil({onmode}) {
     }
 
     useEffect(()=> {
-        console.log('profil.userid :', profil.id)
+        
         if (profil?.id) {
             recup_profil(profil.id)
         }
     }, [])
-
-    console.log('userprofil :', userprofil)
-    console.log('onmode :', onmode)
+    
     return(
         <div>
             
@@ -111,8 +109,8 @@ export default function Profil({onmode}) {
 
             {onmode === 'admin' && (
                 <div className="component_admin">
-                    <h1>{profil.pseudo}</h1>
-                    <h2>{profil.email}</h2>
+                    <h1>{userprofil.pseudo ?? profil.pseudo}</h1>
+                    <h2>{userprofil.email ?? profil.email}</h2>
                     
                     <button onClick={()=>setmodeadmin('profil_admin')}>Profil</button>
                     <button onClick={()=>setmodeadmin('statistique')}>Statistique</button>

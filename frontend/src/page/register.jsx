@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import './register.css'
 
 export default function Register() {
 
@@ -40,8 +40,8 @@ export default function Register() {
         
     }
     return (
-        <div>
-            <form onSubmit={handlesubmit}>
+        <div className="register">
+            <form onSubmit={handlesubmit} className="form_register">
                 
                 <input onChange={handleUser} value={user.nom} type="text" name="nom" placeholder="nom"/>
                 <input onChange={handleUser} value={user.prenom} type="text" name="prenom" placeholder="prenom"/>

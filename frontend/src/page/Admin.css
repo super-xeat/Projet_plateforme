@@ -19,11 +19,22 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
+    border: 1px solid grey;
+    padding-left: 1rem;
 }
 
 .sidebar2 {
     padding: 5%;
+    
+}
+
+.sidebar2 h1 {
+    font-size: 2rem;
+    color: red;
+}
+
+.sidebar2 p {
+    margin-bottom: 2rem;
 }
 
 .navbar_admin {
@@ -33,23 +44,33 @@ body {
     width: 80%;
     left: 20%;
     height: 10vh;
+    padding-top: 2.5rem;
+    padding-left: 1rem;
+    border: 1px solid grey;
+}
+
+.navbar_admin h3 {
+    font-size: 0.75rem;
+    font-weight: 100;
+    color: grey;
 }
 
 
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding-left: 1rem;
 }
 
 .container button {
-    margin-top: 5%;
-    width: 70%;
-    font-size: 20px;
+    margin-top: 3rem;
+    width: 100%;
+    font-size: 1rem;
     background: none;
     border: none;
     color: gray;
+    display: flex;
+    align-items: center;
 }
 
 .btn {
@@ -61,6 +82,17 @@ body {
     border-bottom: none;
     border-left: none;
     border-right: none;
+}
+
+
+.btn_admin1 {
+    margin-right: 0.5rem;
+}
+
+.retour_site {
+    color: grey;
+    text-decoration: none;
+    font-size: 1rem;
 }
 
 .btn:hover {

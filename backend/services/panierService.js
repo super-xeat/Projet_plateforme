@@ -4,7 +4,10 @@ import {
     Obtenir_panier,
     verify_product,
     Update_quantity,
-    verify_panier
+    verify_panier,
+    delete_product,
+    update_quantity,
+    delete_all
 } from "../models/panier.js";
 
 
@@ -51,4 +54,29 @@ export const Obtenir_panier_service = async(id_user) => {
     }
     const panier = await Obtenir_panier(id_user)
     return panier
+}
+
+
+export const delete_product_service = async(id_product, id_panier) => {
+    if (!id_product || !id_panier) {
+        throw {statut: 500, 'message': 'erreur id_product ou id_panier manquant'}
+    }
+
+    await delete_product(id_product, id_panier)
+}
+
+export const delete_all_service = async(id_panier) => {
+    if (!id_panier) {
+        throw {statut: 400, 'message': 'il manque id_panier'}
+    }
+    await delete_all(id_panier)
+}
+
+
+export const update_quantity_service = async(quantity, id_product, id_panier) => {
+    if (!quantity || !id_product || !id_panier) {
+        throw {status: 400, 'erreur': 'champs manquant'}
+    }
+
+    await update_quantity(quantity, id_product, id_panier)
 }

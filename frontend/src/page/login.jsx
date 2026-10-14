@@ -24,7 +24,8 @@ export default function Login() {
                 <input onChange={(e)=>setemail(e.target.value)} type="text" value={email} placeholder="email"/>
                 <input onChange={(e)=>setpassword(e.target.value)} type="password" value={password} placeholder="password"/>
                 <button type="submit">envoyer</button>
-                <p>Si vous n'avez pas de compte cliquez <Link to={'/register'}>ici</Link></p>
+                <p>Si vous n'avez pas de compte cliquez <Link to={'/register'} 
+                    style={{color:'grey'}}>ici</Link></p>
             </form>
 
             

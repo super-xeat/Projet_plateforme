@@ -49,7 +49,7 @@ export const Login_service = async(email, password) => {
     // construction du toekn
     const token = jwt.sign(
 
-        { "userid": user.id_user, "role": user.role },
+        { "id": user.id_user, "role": user.role },
         process.env.SECRET_KEY,
         {expiresIn: '3h'}
     )

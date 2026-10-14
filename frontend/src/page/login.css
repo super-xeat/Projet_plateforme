@@ -1,7 +1,11 @@
 
 
 .login {
-    background-color: gray;
+    background-image: 
+    linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('/public/pexels-curiouspixelspro-32674055.jpg');
+    background-size: cover;
+    background-position: center;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -12,8 +16,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(39, 39, 39, 0.836);
+    background-color: rgba(28, 27, 27, 0.9);
     border-radius: 20px;
+    border: 1px solid grey;
     padding: 2rem;
     width: 40%;
     gap: 1rem;
@@ -26,6 +31,11 @@
     border: 1px solid grey;
     background-color: rgba(35, 35, 35, 0.236);
     color: aliceblue;
+    padding-left: 1rem;
+}
+
+.formulaire_login p {
+    color: grey;
 }
 
 .formulaire_login input:hover {

@@ -58,7 +58,7 @@ export default function ProductCard() {
                                         <button onClick={()=>setchiffre(chiffre + 1)}>+</button>
                                     </div>
 
-                                    <button className="btn_panier" onClick={()=>Ajouter_Panier(id_product, chiffre, profil.id_user)}>Ajouter au panier</button>
+                                    <button className="btn_panier" onClick={()=>Ajouter_Panier(id_product, chiffre, profil.id)}>Ajouter au panier</button>
                                 </div>               
                             </div>
                             

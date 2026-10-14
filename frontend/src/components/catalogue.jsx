@@ -21,7 +21,7 @@ export default function Catalogue() {
     
     const page = parseInt(queryparams.get('page')) || 1
     
-
+    console.log('profil :', profil)
     async function Obtenir_product(id_categorie, page, recherche) {
         try {
             const response = await fetch(`http://localhost:8000/api/product/obtenir_product/${id_categorie}?valeur=${encodeURIComponent(recherche)}&page=${page}`, {
@@ -111,12 +111,12 @@ export default function Catalogue() {
                             <Link to={`/product_card/${product.id_product}`} className="link">
                                 <div className="product_card_link">
                                     <img src={product.image} className="card_image" alt={product.name}/> 
-                                    <h3 className="card_name">{product.name}</h3>
+                                    <h3 className="card_name">{product.product_name}</h3>
                                 </div>
                             </Link>  
                             <div className="panier_btn">
                                 <h2>{product.price} €</h2>
-                                <button onClick={()=>Ajouter_Panier(product.id_product, 1, profil.userid)} className="btn_ajouter">+ Panier</button>
+                                <button onClick={()=>Ajouter_Panier(product.id_product, 1, profil.id)} className="btn_ajouter">+ Panier</button>
                             </div> 
                         </div>   
                     ))}
@@ -136,7 +136,7 @@ export default function Catalogue() {
                             </Link> 
                             <div className="panier_btn">
                                 <h2>{product.price} €</h2>
-                                <button onClick={()=>Ajouter_Panier(product.id_product, 1, profil.userid)} className="btn_ajouter">+ Panier</button>
+                                <button onClick={()=>Ajouter_Panier(product.id_product, 1, profil.id)} className="btn_ajouter">+ Panier</button>
                             </div> 
                         </div>
                     ))}
