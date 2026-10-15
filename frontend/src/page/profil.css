@@ -110,3 +110,37 @@ hr {
     border-radius: 10px;
     padding: 0.5rem;
 }
+
+.btn_profil_selection button {
+    background: none;
+    color: grey;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.btn_profil_selection button:nth-of-type(2) {
+    margin-left: 2rem;
+}
+
+.btn_profil_selection {
+    border-bottom: 1px solid grey;
+}
+
+.profil_title_admin {
+    font-size: 2rem;
+}
+
+.profil_title_admin2 {
+    font-size: 0.8rem;
+    font-weight: 100;
+    margin-bottom: 1rem;
+}
+
+/* ----------------------------------------- */
+
+.stat2_image {
+    width: 15%;
+}

@@ -11,6 +11,11 @@ export default function Profil({onmode}) {
     const [userprofil, setuserprofil] = useState({})
     const [modeadmin, setmodeadmin] = useState('profil_admin')
 
+    const [nbcommande, setnbcommande] = useState(null)
+    const [stock, setstock] = useState(null)
+    const [chiffre, setchiffre] = useState(null)
+    const [prodstock, setprodstock] = useState([])
+
     const [user, setuser] = useState({})
     
     async function recup_profil(id_user) {
@@ -48,6 +53,66 @@ export default function Profil({onmode}) {
         }
     }
 
+    async function nb_commande() {
+        try {
+            const response = await fetch(`http://localhost:8000/api/admin/nb_commande`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setnbcommande(data.nb_commande)
+            }
+        } catch (error) {
+            console.log('erreur :', error)
+        }
+    }
+
+    async function chiffre_affaire() {
+        try {
+            const response = await fetch(`http://localhost:8000/api/admin/chiffre_affaire`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setchiffre(data.chiffre_affaire)
+            }
+        } catch (error) {
+            console.log('erreur :', error)
+        }
+    }
+
+    async function stock_critique() {
+        try {
+            const response = await fetch(`http://localhost:8000/api/admin/stock_critique`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setstock(data.stock_critique)
+            }
+        } catch (error) {
+            console.log('erreur :', error)
+        }
+    }
+
+    async function nb_listeproduct() {
+        try {
+            const response = await fetch(`http://localhost:8000/api/admin/product_critique_liste`, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setprodstock(data.liste_product_critique)
+            }
+        } catch (error) {
+            console.log('erreur :', error)
+        }
+    }
+
     function Handlechange(e) {       
         setuser({...user, [e.target.name]: e.target.value})       
     }
@@ -64,6 +129,13 @@ export default function Profil({onmode}) {
         
         if (profil?.id) {
             recup_profil(profil.id)
+        }
+
+        if (onmode === 'admin') {
+            nb_commande()
+            nb_listeproduct()
+            stock_critique()
+            chiffre_affaire()
         }
     }, [])
     
@@ -109,14 +181,22 @@ export default function Profil({onmode}) {
 
             {onmode === 'admin' && (
                 <div className="component_admin">
-                    <h1>{userprofil.pseudo ?? profil.pseudo}</h1>
-                    <h2>{userprofil.email ?? profil.email}</h2>
+                    <h1 className="profil_title_admin">{userprofil.pseudo ?? profil.pseudo}</h1>
+                    <h2 className="profil_title_admin2">{userprofil.email ?? profil.email}</h2>
                     
-                    <button onClick={()=>setmodeadmin('profil_admin')}>Profil</button>
-                    <button onClick={()=>setmodeadmin('statistique')}>Statistique</button>
-                    
+                    <div className="btn_profil_selection">
+                        <button onClick={()=>setmodeadmin('profil_admin')} style={{
+                            color : modeadmin === 'profil_admin' ? 'white' : 'grey'
+                        }}>Profil</button>
+                        <button onClick={()=>setmodeadmin('statistique')} style={{
+                            color : modeadmin === 'statistique' ? 'white' : 'grey'
+                        }}>Statistique</button>                   
+                    </div>
+
                     {modeadmin === 'profil_admin' && (
+                        
                         <form onSubmit={Handlesubmit} className="formulaire_profil_admin">
+                            <br /><br />
                             <span>nom</span>
                             <input onChange={Handlechange} value={user.nom ?? userprofil.nom ?? ''} name="nom" type="text"/>
                             <span>prénom</span>
@@ -127,10 +207,51 @@ export default function Profil({onmode}) {
                             <input onChange={Handlechange} value={user.pseudo ?? userprofil.pseudo ?? ''} name="pseudo" type="text" />
                             <button type="submit">Enregistrer les modifications</button>
                         </form>
-                    )}
+                    )} 
 
                     {modeadmin === 'statistique' && (
-                        <h1>Tableau de bord</h1>
+                        <div>
+                            <div className="stat1">
+                                    <h2>Tableau de bord</h2>
+                                <div>
+                                    <div>{nbcommande}</div>
+                                    <p>commande passé</p>
+                                </div>
+                                <div>
+                                    <h1>{stock}</h1>
+                                    <p>stock produit inférieur à 5</p>
+                                </div>
+                                <div>
+                                    <h1>{chiffre}</h1>
+                                    <p>chiffre d'affaire</p>
+                                </div>
+                            </div>
+
+                            <div className="stat2">
+                                <table>
+                                    <thead className="stat2_tableau">
+                                        <tr>
+                                            <th>Produit</th>
+                                            <th>Stock</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {prodstock?.map((prod)=> (
+                                            <tr key={prod.id_product}>
+                                                <td>
+                                                    <img src={prod.image} className="stat2_image"/>
+                                                    <h3>{prod.name}</h3>
+                                                </td>
+                                                <td>{prod.stock}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                    <tfoot>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
                     )}
                 </div>
             )}

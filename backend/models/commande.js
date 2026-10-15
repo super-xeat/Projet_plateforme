@@ -61,3 +61,5 @@ export const trouver_adresse = async(id_user) => {
     const [result] = await db.query(sql_adresse, [id_user])
     return result[0].adresse
 }
+
+

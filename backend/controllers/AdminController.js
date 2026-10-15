@@ -7,7 +7,14 @@ import {
 
     Ajout_produit_service,
     delete_product_service,
-    Obtenir_product_admin_service
+    Obtenir_product_admin_service,
+    obtenir_commande_service,
+    modify_commande_service,
+    
+    chiffre_affaire_service,
+    stock_critique_service,
+    product_critique_service,
+    nb_commande_service
  } from "../services/AdminService.js";
 
 
@@ -115,6 +122,108 @@ export const obtenir_product_admin_controller = async(req, res) => {
         console.log('erreur :', error)
         return res.status(500).json({
             'message': 'probleme dans le product admin controller'
+        })
+    }
+}
+
+
+export const obtenir_commande_controller = async(req, res) => {
+    try {
+        const commande = await obtenir_commande_service()
+
+        return res.status(200).json({
+            'commande': commande
+        })
+    } catch (error) {
+        console.log('erreur :', error)
+        return res.status(500).json({
+            'message': 'probleme dans le commande admin controller'
+        })
+    }
+}
+
+export const modify_commande_controller = async(req, res) => {
+    try {
+        const {id_commande} = req.params
+        const {statut} = req.body
+
+        await modify_commande_service(statut, id_commande)
+
+        return res.status(200).json({
+            'message': 'commande modifié avec succés'
+        })
+    } catch (error) {
+        console.log('erreur :', error)
+        return res.status(500).json({
+            'message': 'probleme dans le controller'
+        })
+    }
+}
+
+
+export const nb_commande_controller = async(req, res) => {
+    try {
+        const nb_commande = await nb_commande_service()
+
+        return res.status(200).json({
+            'nb_commande': nb_commande
+        })
+
+    } catch (error) {
+        console.log('erreur :', error)
+        return res.status(500).json({
+            'message': 'probleme dans le controller'
+        })
+    }
+}
+
+
+export const chiffre_affaire_controller = async(req, res) => {
+    try {
+        const chiffre_affaire = await chiffre_affaire_service()
+
+        return res.status(200).json({
+            'chiffre_affaire': chiffre_affaire
+        })
+
+    } catch (error) {
+        console.log('erreur :', error)
+        return res.status(500).json({
+            'message': 'probleme dans le controller'
+        })
+    }
+}
+
+export const stock_critique_controller = async(req, res) => {
+
+    try {
+        const stock_critique = await stock_critique_service()
+
+        return res.status(200).json({
+            'stock_critique': stock_critique
+        })
+
+    } catch (error) {
+        console.log('erreur :', error)
+        return res.status(500).json({
+            'message': 'probleme dans le controller'
+        })
+    }
+}
+
+export const product_critique_controller = async(req, res) => {
+
+    try {
+        const liste_product = await product_critique_service()
+
+        return res.status(200).json({
+            'liste_product_critique': liste_product
+        })
+        
+    } catch (error) {
+        console.log('erreur :', error)
+        return res.status(500).json({
+            'message': 'probleme dans le controller'
         })
     }
 }

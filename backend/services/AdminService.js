@@ -9,7 +9,13 @@ import {
     Ajout_liaison_vehicule,
 
     delete_product,
-    Obtenir_products_admin
+    Obtenir_products_admin,
+    obtenir_commande,
+    modify_commande,
+    nbcommande,
+    product_critique,
+    chiffre_affaire,
+    stock_critique
  } from "../models/admin.js";
 
 
@@ -91,4 +97,66 @@ export const Obtenir_product_admin_service = async(page) => {
 
     const result = await Obtenir_products_admin(limit, offset)
     return result
+}
+
+
+export const obtenir_commande_service = async() => {
+
+    const commande = await obtenir_commande()
+    if (commande.length === 0) {
+        throw {statut: 400, 'message': 'liste de commande vide'}
+    }
+
+    return commande
+}
+
+
+export const modify_commande_service = async(statut, id_commande) => {
+
+    if (!id_commande || !statut) {
+        throw {statut: 400, 'message': 'champs manquant'}
+    }
+
+    await modify_commande(statut, id_commande)
+}
+
+
+export const nb_commande_service = async() => {
+
+    const result = await nbcommande()
+    if (result === 0) {
+        throw {statut: 200, 'message': 'pas de commande'}
+    }
+
+    return result
+}
+
+export const chiffre_affaire_service = async() => {
+
+    const chiffre_affaire_result = await chiffre_affaire()
+    if (chiffre_affaire_result === 0 || chiffre_affaire_result === null) {
+        throw {statut: 200, 'message': 'pas de CA'}
+    }
+    return chiffre_affaire_result
+}
+
+export const stock_critique_service = async() => {
+
+    const stock_critique_result = await stock_critique()
+    if (stock_critique_result === 0) {
+        throw {statut: 200, 'message': 'pas de stock critique'}
+    }
+
+    return stock_critique_result
+}
+
+
+export const product_critique_service = async() => {
+
+    const prod_critique_result = await product_critique()
+    if (prod_critique_result.length === 0) {
+        throw {statut: 200, 'message': 'liste vide'}
+    }
+
+    return prod_critique_result
 }

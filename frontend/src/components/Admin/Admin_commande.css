@@ -9,3 +9,8 @@
     max-height: 90vh;
     overflow-y: auto;
 }
+
+.commande_titre {
+    border-bottom: 1px solid grey;
+    padding-bottom: 1rem;
+}
