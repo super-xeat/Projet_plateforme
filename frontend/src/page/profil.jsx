@@ -1,5 +1,8 @@
 import { useAuth } from "../context/authcontexte"
 import { useState, useEffect } from "react"
+import { useSearchParams } from "react-router-dom"
+import { VscChevronRightCompact } from "react-icons/vsc";
+import { VscChevronLeftCompact } from "react-icons/vsc";
 import './profil.css'
 
 
@@ -17,7 +20,10 @@ export default function Profil({onmode}) {
     const [prodstock, setprodstock] = useState([])
 
     const [user, setuser] = useState({})
-    
+    const [useparam, setuseparam] = useSearchParams()
+
+    const page = parseInt(useparam.get('page')) || 1
+
     async function recup_profil(id_user) {
         
         try {
@@ -98,9 +104,9 @@ export default function Profil({onmode}) {
         }
     }
 
-    async function nb_listeproduct() {
+    async function nb_listeproduct(page) {
         try {
-            const response = await fetch(`http://localhost:8000/api/admin/product_critique_liste`, {
+            const response = await fetch(`http://localhost:8000/api/admin/product_critique_liste?page=${page}`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -133,11 +139,11 @@ export default function Profil({onmode}) {
 
         if (onmode === 'admin') {
             nb_commande()
-            nb_listeproduct()
+            nb_listeproduct(page)
             stock_critique()
             chiffre_affaire()
         }
-    }, [])
+    }, [page])
     
     return(
         <div>
@@ -212,18 +218,20 @@ export default function Profil({onmode}) {
                     {modeadmin === 'statistique' && (
                         <div>
                             <div className="stat1">
-                                    <h2>Tableau de bord</h2>
-                                <div>
-                                    <div>{nbcommande}</div>
-                                    <p>commande passé</p>
-                                </div>
-                                <div>
-                                    <h1>{stock}</h1>
-                                    <p>stock produit inférieur à 5</p>
-                                </div>
-                                <div>
-                                    <h1>{chiffre}</h1>
-                                    <p>chiffre d'affaire</p>
+                                
+                                <div className="bull_stat">
+                                    <div>
+                                        <h1>{nbcommande}</h1>
+                                        <p>commande passé</p>
+                                    </div>
+                                    <div>
+                                        <h1>{stock}</h1>
+                                        <p>stock produit inférieur à 5</p>
+                                    </div>
+                                    <div>
+                                        <h1>{chiffre}</h1>
+                                        <p>chiffre d'affaire</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -231,23 +239,43 @@ export default function Profil({onmode}) {
                                 <table>
                                     <thead className="stat2_tableau">
                                         <tr>
-                                            <th>Produit</th>
+                                            <th>Produit inférieur à 5</th>
                                             <th>Stock</th>
+                                            <th>Prix</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {prodstock?.map((prod)=> (
-                                            <tr key={prod.id_product}>
+                                            <tr key={prod.id_product} className="stat2_body">
                                                 <td>
-                                                    <img src={prod.image} className="stat2_image"/>
-                                                    <h3>{prod.name}</h3>
+                                                   <div className="product_table">
+                                                        <div className="image_wrap">
+                                                            <img src={prod.image} className="stat2_image"/>
+                                                        </div>
+                                                        <h3>{prod.name}</h3>
+                                                   </div>
                                                 </td>
                                                 <td>{prod.stock}</td>
+                                                <td>{prod.price}</td>
                                             </tr>
                                         ))}
-                                    </tbody>
+                                    </tbody> 
                                     <tfoot>
-
+                                        <tr>
+                                            <td>
+                                                <div className="pagination_stock">
+                                                    <button disabled={page <= 1} onClick={() => setuseparam({ page: page - 1 })} className="btn_stats">
+                                                        <VscChevronLeftCompact color="white" size={20}/>
+                                                    </button>
+                                                    <div className="stat_page">
+                                                        <p>page : {page} sur {stock}</p>
+                                                    </div>
+                                                    <button disabled={page >= stock} onClick={() => setuseparam({ page: page + 1 })} className="btn_stats">
+                                                        <VscChevronRightCompact color="white" size={20}/>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>

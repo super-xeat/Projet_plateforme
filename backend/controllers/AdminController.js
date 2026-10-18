@@ -107,11 +107,11 @@ export const delete_product_controller = async(req, res) => {
 
 export const obtenir_product_admin_controller = async(req, res) => {
 
-    try {
-        const {page} = req.query
+    try { 
+        const {page, id_categorie} = req.query
 
         const result_total = await total()
-        const obtenir_product = await Obtenir_product_admin_service(page)
+        const obtenir_product = await Obtenir_product_admin_service(id_categorie, page)
 
         return res.status(200).json({
             'total': result_total,
@@ -213,11 +213,15 @@ export const stock_critique_controller = async(req, res) => {
 
 export const product_critique_controller = async(req, res) => {
 
+    const {page} = req.query
+
     try {
-        const liste_product = await product_critique_service()
+        const liste_product = await product_critique_service(page)
+        const total = await stock_critique_service()
 
         return res.status(200).json({
-            'liste_product_critique': liste_product
+            'liste_product_critique': liste_product,
+            'total': total
         })
         
     } catch (error) {

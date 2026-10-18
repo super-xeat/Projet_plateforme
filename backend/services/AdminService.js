@@ -15,7 +15,9 @@ import {
     nbcommande,
     product_critique,
     chiffre_affaire,
-    stock_critique
+    stock_critique,
+
+    Obtenir_products_all_admin
  } from "../models/admin.js";
 
 
@@ -84,10 +86,11 @@ export const delete_product_service = async(id_product) => {
         throw {statut: 400, 'message': 'il manque id_product'}
     }
 
-    await delete_product(id_product)
+    await delete_product(id_product) 
 }
 
-export const Obtenir_product_admin_service = async(page) => {
+
+export const Obtenir_product_admin_service = async(id_categorie, page) => {
     if (!page) {
         throw {status: 400, 'message': 'page introuvable'}
     }
@@ -95,7 +98,11 @@ export const Obtenir_product_admin_service = async(page) => {
     const limit = 5
     const offset = (page - 1) * limit
 
-    const result = await Obtenir_products_admin(limit, offset)
+    if (!id_categorie || id_categorie === 'undefined' || id_categorie === 'null') {
+        const result = await Obtenir_products_all_admin(limit, offset)
+        return result
+    }
+    const result = await Obtenir_products_admin(id_categorie, limit, offset)
     return result
 }
 
@@ -151,9 +158,17 @@ export const stock_critique_service = async() => {
 }
 
 
-export const product_critique_service = async() => {
+export const product_critique_service = async(page) => {
 
-    const prod_critique_result = await product_critique()
+    if (!page) {
+        throw {statut: 400, 'message': 'il mannque la page'}
+    }
+
+    const limit = 5
+    const offset = (page - 1) * limit
+
+    const prod_critique_result = await product_critique(limit, offset)
+    
     if (prod_critique_result.length === 0) {
         throw {statut: 200, 'message': 'liste vide'}
     }

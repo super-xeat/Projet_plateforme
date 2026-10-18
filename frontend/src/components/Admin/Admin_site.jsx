@@ -21,10 +21,10 @@ export default function Admin_site() {
     const [queryparams, setqueryparams] = useSearchParams()
     
 
-    async function Produits(page) {
+    async function Produits(categorie, page) {
 
         try {
-            const response = await fetch(`http://localhost:8000/api/admin/obtenir_prod?page=${page}`, {
+            const response = await fetch(`http://localhost:8000/api/admin/obtenir_prod?id_categorie=${categorie}&page=${page}`, {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -79,10 +79,10 @@ export default function Admin_site() {
             setqueryparams({page: 1})
         }
 
-        Produits(page)
+        Produits(categorie, page)
         Get_categorie()
         Obtenir_user()
-    }, [page])
+    }, [categorie, page])
 
     
     const filtre = categorie ? products?.filter(product => product.id_categorie === Number(categorie)) : products
@@ -132,7 +132,9 @@ export default function Admin_site() {
                                             
                                             <td>
                                                 <div className="ligne1">
-                                                    <img src={product.image} className="admin_image"/>
+                                                    <div className="ligne1_image">
+                                                        <img src={product.image} className="admin_image"/>
+                                                    </div>
                                                     <h3>{product.name}</h3>
                                                 </div> 
                                             </td>              

@@ -50,9 +50,15 @@ export const total = async() => {
     return result_total[0].total
 }
 
-const Product_sql = `SELECT * FROM product LIMIT ? OFFSET ?`
-export const Obtenir_products_admin = async(limit, offset) => {
-    const [result] = await db.query(Product_sql, [limit, offset])
+const Product_sql = `SELECT * FROM product WHERE id_categorie = ? LIMIT ? OFFSET ?`
+export const Obtenir_products_admin = async(id_categorie, limit, offset) => {
+    const [result] = await db.query(Product_sql, [id_categorie, limit, offset])
+    return result
+}
+
+const Product_all_sql = `SELECT * FROM product LIMIT ? OFFSET ?`
+export const Obtenir_products_all_admin = async(limit, offset) => {
+    const [result] = await db.query(Product_all_sql, [limit, offset])
     return result
 }
  
@@ -94,7 +100,7 @@ export const nbcommande = async() => {
     return result[0].nb_commande
 }
 
-// oublie pas pour les service si liste null 0
+
 const sql_chiffre_affaire = `SELECT SUM(montant_total) AS chiffre_affaire FROM commande`
 export const chiffre_affaire = async() => {
     const [result] = await db.query(sql_chiffre_affaire)
@@ -107,11 +113,11 @@ export const stock_critique = async() => {
     return result[0].stock_critique
 }
 
-const sql_product_stock = `SELECT name, stock, image, id_product
+const sql_product_stock = `SELECT price, name, stock, image, id_product
                           FROM product
-                          WHERE stock < 5`
+                          WHERE stock < 5 LIMIT ? OFFSET ?`
 
-export const product_critique = async() => {
-    const [result] = await db.query(sql_product_stock)
+export const product_critique = async(limit, offset) => {
+    const [result] = await db.query(sql_product_stock, [limit, offset])
     return result
 }

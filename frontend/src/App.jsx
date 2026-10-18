@@ -36,7 +36,7 @@ export default function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/profil' element={<Profil onmode={'client'}/>}/>
             <Route path='/catalogue' element={<Catalogue/>}/>
-            <Route path='/catalogue/:id_catalogue' element={<Catalogue/>}/>     
+            <Route path='/catalogue/:id_categorie' element={<Catalogue/>}/>     
             <Route path='/product_card/:id_product' element={<ProductCard/>}/>
             <Route path='/panier' element={<Panier/>}/>
             <Route path='/panier_vide' element={<Panier_vide/>}/>

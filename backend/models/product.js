@@ -54,7 +54,7 @@ export const Obtenir_vehicule = async() => {
 
 const Obtenir_produit_sql = `SELECT 
                             product.id_product,
-                            product.name AS product_name,
+                            product.name AS name,
                             product.description, 
                             product.price, 
                             product.image,

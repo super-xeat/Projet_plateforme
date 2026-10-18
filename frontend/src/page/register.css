@@ -1,0 +1,73 @@
+
+
+.register {
+    background-image: 
+    linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('/public/pexels-orhunruzgaroz-10912797.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_register {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.nom_prenom {
+    display: flex;
+    justify-content: space-between;
+}
+.nom_prenom input {
+    width: 45%;
+}
+
+.form_register input {
+    margin-bottom: 1rem;
+    height: 6vh;
+    border: 1px solid grey;
+    background-color: rgba(20, 20, 20, 0.803);
+    color: aliceblue;
+    padding-left: 1rem;
+    border-radius: 10px;
+}
+
+.form_register input:hover {
+    border-color: azure;
+}
+
+.btn_register {
+    height: 5vh;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_register button {
+    width: 50%;
+    height: 100%;
+    color: aliceblue;
+    background-color: red;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.btn_register button:hover {
+    background-color: rgb(254, 122, 122);
+}
+
+
+.register1 {
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.547);
+    padding: 3rem;
+    border-radius: 20px;
+}
