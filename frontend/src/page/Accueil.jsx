@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Footer from '../components/footer'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { FaLongArrowAltRight } from "react-icons/fa";
 
 
 export default function Accueil() {
@@ -114,7 +115,7 @@ export default function Accueil() {
                     <div className="titre-form">
                         Trouver par véhicule
                     </div>
-                    <label htmlFor="">marque</label>
+                    <label htmlFor="">marque</label> 
                     <input placeholder='entrez la marque' onChange={(e)=>setmarque(e.target.value)} value={marque}/>
                     
                     <label htmlFor="">model</label>
@@ -136,17 +137,15 @@ export default function Accueil() {
             <div className="accueil3">
                 <div>
                     <h1 className='accueil3_titre'>Categorie</h1>
-                    <Link to={'/catalogue/:id_catalogue'}>Voir tous</Link>
+                    <Link to={'/catalogue/:id_catalogue'} className='link_accueil'>
+                    <FaLongArrowAltRight size={20}/>Voir tous</Link>
                 </div>
                 <div className='liste_categorie_accueil'>
                     {listeCategorie.map((categorie)=>(
-                        <div key={categorie.id_categorie} className='categorie_card_accueil'
-                            style={{ 
-                                backgroundImage: `url(${categorie.image})`,
-                            }}
-                        >
+                        <div key={categorie.id_categorie} className='categorie_card_accueil'>
+                            <img src={categorie.image} alt={categorie.name} className='categorie_img' />
                             <Link to={`/catalogue/${categorie.id_categorie}`} className='categorie_titre'>{categorie.name}</Link>          
-                            
+                             
                         </div>
                     ))}
                 </div>

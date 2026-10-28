@@ -6,7 +6,11 @@ import { commande,
         supp_panier,
         trouver_panierProduct,
         trouver_prix,
-        trouver_adresse
+        trouver_adresse,
+        commande_cours,
+        commande_passer,
+        product_commande_cours,
+        product_commande_passer
      } from "../models/commande.js";
 import { db } from "../database/config.js";
 
@@ -89,3 +93,51 @@ export const passer_commande_service = async(id_user) => {
         connection.release()
     }
 } 
+
+
+export const product_cours_service = async(id_commande, statut) => {
+    if (!id_commande || !statut) {
+        throw {statut: 400, 'message': 'id commande ou statut manquant'}
+    }
+    const product_commande = await product_commande_cours(id_commande, statut)
+    
+    return product_commande
+}
+
+export const product_passer_service = async(id_commande, statut) => {
+    if (!id_commande || !statut) {
+        throw {statut: 400, 'message': 'id commande ou statut manquant'}
+    }
+    const product_commande = await product_commande_passer(id_commande, statut)
+    return product_commande
+}
+
+
+export const commande_cours_service = async(id_user) => {
+    if (!id_user) {
+        throw {statut: 400, 'message': 'user manquant'}
+    }
+    const commande = await commande_cours(id_user)
+    
+    for (const order of commande) {
+        const liste_prod = await product_commande_cours(order.id_commande, order.statut)
+        order.listeproduct = liste_prod 
+    }
+
+    return commande
+}
+
+
+export const commande_passer_service = async(id_user) => {
+    if (!id_user) {
+        throw {statut: 400, 'message': 'user manquant'}
+    }
+    const commande = await commande_passer(id_user)
+
+    for (const order of commande) {
+        const liste_prod = await product_commande_cours(order.id_commande, order.statut)
+        order.listeproduct = liste_prod 
+    }
+
+    return commande
+}

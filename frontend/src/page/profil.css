@@ -44,6 +44,10 @@ span {
     margin-bottom: 1rem;
 }
 
+.client_profil {
+    margin-left: 2rem;
+}
+
 hr {
     margin-bottom: 1rem;
 }
@@ -155,6 +159,50 @@ hr {
     width: 100%;
     height: 100%;
     object-fit: cover;  
+}
+
+.image_commande {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.commandefiltre {
+    background-color: rgb(8, 8, 8);
+    max-height: 30vh;
+    overflow-y: auto;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+.comfiltre1 {
+    display: flex;
+}
+
+.commandefiltre_prod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    border: 1px solid rgb(219, 15, 15);
+    margin-top: 2rem;
+    padding-right: 1rem;
+}
+
+.commandefiltre_title {
+    font-size: 1.5rem;
+}
+
+.commandefiltre_quantity {
+    color: #f5f5f5;
+}
+
+.commandefiltre_btn {
+    margin-top: 2rem;
+    
 }
 
 .product_table {

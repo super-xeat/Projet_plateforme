@@ -52,7 +52,7 @@ export const Login_controller = async(req, res) => {
             'email': user.email,
             'message': 'utilisateur trouvé avec succés'
         }
-        console.log('user :', user_trouver)
+        console.log('user controller :', user_trouver)
 
         return res.status(200).json(user_trouver)
 

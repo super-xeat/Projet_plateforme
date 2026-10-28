@@ -169,7 +169,7 @@ export default function AdminCreation() {
             </div>
             
             {Ajoutproduit === true ? (
-                <div>
+                <div className="admin_creation_ajout_product">
                     <Ajout_produit onbutton={setAjoutproduit}/>                  
                 </div>
             ) : (

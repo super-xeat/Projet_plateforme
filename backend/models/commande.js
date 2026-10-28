@@ -63,3 +63,42 @@ export const trouver_adresse = async(id_user) => {
 }
 
 
+const sql_commande_cours = `SELECT * FROM commande
+                            WHERE (statut = 'en cours' OR statut = 'expédié') AND id_user = ?`
+export const commande_cours = async(id_user) => {
+    const [result] = await db.query(sql_commande_cours, [id_user])
+    return result 
+}
+
+const sql_commande_passer = `SELECT * FROM commande 
+                            WHERE statut = 'livré' AND id_user = ?`
+export const commande_passer = async(id_user) => {
+    const [result] = await db.query(sql_commande_passer, [id_user])
+    return result
+}
+
+const sql_product_commande_passer = `SELECT product.name, product.image, product.price, product_commande.quantity
+                             FROM product
+                             JOIN product_commande
+                             ON product_commande.id_product = product.id_product
+                             JOIN commande
+                             ON product_commande.id_commande = commande.id_commande
+                             WHERE commande.id_commande = ? AND commande.statut = 'livré'`
+
+export const product_commande_passer = async(id_commande, statut) => {
+    const [result] = await db.query(sql_product_commande_passer, [id_commande, statut])
+    return result
+}
+
+const sql_product_commande_cours = `SELECT product.name, product.image, product.price, product_commande.quantity
+                             FROM product
+                             JOIN product_commande
+                             ON product_commande.id_product = product.id_product
+                             JOIN commande
+                             ON product_commande.id_commande = commande.id_commande
+                             WHERE commande.id_commande = ? AND commande.statut IN ('en cours', 'expédié')`
+
+export const product_commande_cours = async(id_commande, statut) => {
+    const [result] = await db.query(sql_product_commande_cours, [id_commande, statut])
+    return result
+}

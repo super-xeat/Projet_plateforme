@@ -40,7 +40,7 @@ export const Login_service = async(email, password) => {
     }
     
     const user = user_result[0]
-    console.log('user middleware : ', user)
+    console.log('user service : ', user)
     const mot_de_passe = await bcrypt.compare(password, user.mot_de_passe)
     if (!mot_de_passe) {
         throw {status: 401, 'message': 'erreur identifiant'}
@@ -48,7 +48,7 @@ export const Login_service = async(email, password) => {
     
     // construction du toekn
     const token = jwt.sign(
-
+ 
         { "id": user.id_user, "role": user.role },
         process.env.SECRET_KEY,
         {expiresIn: '3h'}

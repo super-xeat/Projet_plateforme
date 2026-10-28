@@ -36,6 +36,7 @@ export default function Authprovider({children}) {
 
                 setprofil(data.user)
                 console.log('vous etes reconnecté', data.user)
+                console.log('profil :', profil)
             }
         } catch (error) {
             console.log('erreur :', error)

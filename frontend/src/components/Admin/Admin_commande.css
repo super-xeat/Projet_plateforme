@@ -10,7 +10,22 @@
     overflow-y: auto;
 }
 
+.tableau_commande {
+    color: rgb(227, 50, 50);
+}
+
 .commande_titre {
     border-bottom: 1px solid grey;
     padding-bottom: 1rem;
+}
+
+.select_commande {
+    border-radius: 6px;
+    padding: 0.25rem;
+    background-color: rgb(51, 51, 51);
+    color: rgb(188, 187, 187);
+}
+
+.select_commande:hover {
+    color: white;
 }

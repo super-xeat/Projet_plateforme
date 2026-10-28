@@ -25,7 +25,7 @@ export default function Footer() {
                     <ul>
                         {listeCategorie.map((cate)=> (
                             <li>
-                                <Link to={`/catalogue/${cate.id_categorie}`}>
+                                <Link to={`/catalogue/${cate.id_categorie}`} className='footer_catalogue'>
                                     {cate.name}
                                 </Link>
                             </li>

@@ -71,6 +71,7 @@ export default function Admin_commande() {
                             <td>{c.nom} - {c.email}</td>
                             <td>
                                 <select
+                                    className='select_commande'
                                     value={c.statut}
                                     onChange={(e) => modify_commande(e.target.value, c.id_commande)}
                                 >

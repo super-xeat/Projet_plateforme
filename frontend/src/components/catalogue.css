@@ -3,6 +3,10 @@
     background-color: rgb(16, 16, 16);
     padding: 1%;
     min-height: 100vh;
+    background-image: 
+    linear-gradient(rgba(12, 12, 12, 0.801), rgb(12, 12, 12)),
+    url('/public/pexels-cottonbro-7565157.jpg');
+    background-size: contain;
     
 }
 
@@ -90,9 +94,10 @@
 }
 
 .product_card {
-    background-color: rgb(26, 26, 26);
+    background-color: rgb(22, 22, 22);
     border-radius: 10px;
     border: 1px solid grey;
+    z-index: 1;
 }
 
 .link {
@@ -103,13 +108,20 @@
 .card_image_wrapper {
     aspect-ratio: 1/1;
     overflow: hidden;
+    border-radius: 10px 10px 0 0;
 }
 
 .card_image {
     width: 100%;
     height: 100%;
-    border-radius: 10px 10px 0 0;
+    
     object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+    z-index: 0;
+}
+
+.product_card:hover .card_image {
+    transform: scale(1.05);
 }
 
 .card_name {

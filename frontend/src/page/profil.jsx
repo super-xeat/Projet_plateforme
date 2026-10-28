@@ -22,6 +22,12 @@ export default function Profil({onmode}) {
     const [user, setuser] = useState({})
     const [useparam, setuseparam] = useSearchParams()
 
+    const [cours, setcours] = useState(null)
+    const [passer, setpasser] = useState(null)
+
+    const [ouvert, setouvert] = useState(null)
+    const [idorder, setidorder] = useState(null)
+
     const page = parseInt(useparam.get('page')) || 1
 
     async function recup_profil(id_user) {
@@ -119,6 +125,38 @@ export default function Profil({onmode}) {
         }
     }
 
+    async function commande_cours() {
+        try {
+            const response = await fetch('http://localhost:8000/api/commande/commande_cours', {
+                method: 'GET',
+                credentials:'include'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setcours(data.commande_cours)
+                
+            }
+        } catch (error) {
+            console.log('erreur :', error)
+        }
+    }
+
+    async function commande_passer() {
+        try {
+            const response = await fetch('http://localhost:8000/api/commande/commande_passer', {
+                method: 'GET',
+                credentials:'include'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setpasser(data.commande_passer)
+                
+            }
+        } catch (error) {
+            console.log('erreur :', error)
+        }
+    }
+
     function Handlechange(e) {       
         setuser({...user, [e.target.name]: e.target.value})       
     }
@@ -131,20 +169,32 @@ export default function Profil({onmode}) {
         }
     }
 
-    useEffect(()=> {
-        
-        if (profil?.id) {
-            recup_profil(profil.id)
-        }
+    useEffect(() => {
+        if (profil?.id) recup_profil(profil.id)
+    }, [profil?.id])
 
+    useEffect(() => {
+        if (onmode === 'client') {
+            commande_cours()
+            commande_passer()
+        }
+    }, [onmode])
+
+    useEffect(() => {
         if (onmode === 'admin') {
             nb_commande()
-            nb_listeproduct(page)
             stock_critique()
             chiffre_affaire()
         }
-    }, [page])
-    
+    }, [onmode])
+
+    useEffect(() => {
+        if (onmode === 'admin') nb_listeproduct(page)
+    }, [onmode, page])
+
+    const commandefiltre = cours?.find(product => product.id_commande === idorder)
+    const commandefiltre2 = passer?.find(product => product.id_commande === idorder)
+        
     return(
         <div>
             
@@ -152,34 +202,139 @@ export default function Profil({onmode}) {
                 <div className="component_profil">
                 <div className="component_client">
                     <h3 className="profil_title1">---- Mon compte</h3>
-                    <h3 className="profil_title2">{profil.pseudo}</h3>
-                    <p className="profil_title3">{profil.email}</p>
+                    <h3 className="profil_title2">{userprofil.pseudo ?? profil?.pseudo}</h3>
+                    <p className="profil_title3">{userprofil.email ?? profil?.email}</p>
 
-                    <button onClick={()=>setmode('profil')}>profil</button>
-                    <button onClick={()=>setmode('commande passé')}>commande passé</button>
-                    <button onClick={()=>setmode('en cours')}>commande en cours</button>
-                    <div className="barre_profil"></div>
-                    {mode === 'profil' && (
-                        <div className="profil_client">
-                            
-                            <form onSubmit={Handlesubmit} className="formulaire_profil">
-                                <span>nom</span>
-                                <input onChange={Handlechange} value={user.nom ?? userprofil.nom ?? ''} name="nom" type="text"/>
-                                <span>prénom</span>
-                                <input onChange={Handlechange} value={user.prenom ?? userprofil.prenom ?? ''} name="prenom" type="text"/>
-                                <span>email</span>
-                                <input onChange={Handlechange} value={user.email ?? userprofil.email ?? ''} name="email" type="text"/>
-                                <span>adresse</span>
-                                <input onChange={Handlechange} value={user.adresse ?? userprofil.adresse ?? ''} name="adresse" type="text"/>
-                                <span>pseudo</span>
-                                <input onChange={Handlechange} value={user.pseudo ?? userprofil.pseudo ?? ''} name="pseudo" type="text" />
-                                <button type="submit">Enregistrer les modifications</button>
-                            </form>
+                    <div className="client_profil">
+                        <button onClick={()=>{setmode('profil'), setouvert(null), setidorder(null)}}>profil</button>
+                        <button onClick={()=>{setmode('commande passé'), setouvert(null), setidorder(null)}}>commande passé</button>
+                        <button onClick={()=>{setmode('en cours'), setouvert(null), setidorder(null)}}>commande en cours</button>
+                        <div className="barre_profil"></div>
+                        {mode === 'profil' && (
+                            <div className="profil_client">
+                                
+                                <form onSubmit={Handlesubmit} className="formulaire_profil">
+                                    <span>nom</span>
+                                    <input onChange={Handlechange} value={user.nom ?? userprofil.nom ?? ''} name="nom" type="text"/>
+                                    <span>prénom</span>
+                                    <input onChange={Handlechange} value={user.prenom ?? userprofil.prenom ?? ''} name="prenom" type="text"/>
+                                    <span>email</span>
+                                    <input onChange={Handlechange} value={user.email ?? userprofil.email ?? ''} name="email" type="text"/>
+                                    <span>adresse</span>
+                                    <input onChange={Handlechange} value={user.adresse ?? userprofil.adresse ?? ''} name="adresse" type="text"/>
+                                    <span>pseudo</span>
+                                    <input onChange={Handlechange} value={user.pseudo ?? userprofil.pseudo ?? ''} name="pseudo" type="text" />
+                                    <button type="submit">Enregistrer les modifications</button>
+                                </form>
+                            </div>
+                        )}
+                    </div>
+
+                    {mode === 'commande passé' && (
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Adresse de livraison</th>
+                                        <th>Total</th>
+                                        <th>Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {passer?.map(commande => (
+                                        <tr key={commande.id_commande}>
+                                            <td>{commande.date}</td>
+                                            <td>{commande.adresse_livraison}</td>
+                                            <td>{commande.montant_total}</td>
+                                            <td>{commande.statut}</td>
+                                            <td>
+                                                <button onClick={()=>{
+                                                    setouvert('ouvert'), 
+                                                    setidorder(commande.id_commande)}}
+                                                    >Voir produits
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            <div>
+                                {ouvert === 'ouvert' && (
+                                    <div className="commandefiltre">
+                                        {commandefiltre2?.listeproduct?.map((prod, index) => (
+                                            <div key={index} className="commandefiltre_prod">
+                                                <div className="comfiltre1">
+                                                    <div className="image_wrap">
+                                                        <img src={prod.image} className="image_commande"/>
+                                                    </div>
+                                                    <p className="commandefiltre_title">{prod.name}</p>                          
+                                                </div>
+                                                
+                                                <p className="commandefiltre_quantity">x {prod.quantity}</p>
+                                                <p className="commandefiltre_price">{prod.price}e</p>
+                                            </div>
+                                        ))}
+                                        <button onClick={()=>{setidorder(null), setouvert(null)}} className="commandefiltre_btn">fermé</button>
+                                    </div>
+                                )}
+                                
+                            </div>
                         </div>
                     )}
 
-                    {mode === 'commande passé' && (
-                        <div></div>
+                    {mode === 'en cours' && (
+                        <div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Adresse de livraison</th>
+                                        <th>Total</th>
+                                        <th>Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {cours?.map(commande => (
+                                        <tr key={commande.id_commande}>
+                                            <td>{commande.date}</td>
+                                            <td>{commande.adresse_livraison}</td>
+                                            <td>{commande.montant_total}</td>
+                                            <td>{commande.statut}</td>
+                                            <td>
+                                                <button onClick={()=>{
+                                                    setouvert('ouvert'), 
+                                                    setidorder(commande.id_commande)}}
+                                                    >Voir produits
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+
+                            <div>
+                                {ouvert === 'ouvert' && (
+                                    <div className="commandefiltre">
+                                        {commandefiltre?.listeproduct?.map((prod, index) => (
+                                            <div key={index} className="commandefiltre_prod">
+                                                <div className="comfiltre1">
+                                                    <div className="image_wrap">
+                                                        <img src={prod.image} className="image_commande"/>
+                                                    </div>
+                                                    <p className="commandefiltre_title">{prod.name}</p>                          
+                                                </div>
+
+                                                <p className="commandefiltre_quantity">x {prod.quantity}</p>
+                                                <p className="commandefiltre_price">{prod.price}e</p>
+                                            </div>
+                                        ))}
+                                        <button onClick={()=>{setidorder(null), setouvert(null)}} className="commandefiltre_btn">fermé</button>
+                                    </div>
+                                )}
+                                
+                            </div>
+                        </div>
                     )}
                 </div>
                 </div>

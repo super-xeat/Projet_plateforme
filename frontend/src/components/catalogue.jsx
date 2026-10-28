@@ -117,7 +117,7 @@ export default function Catalogue() {
                             </div> 
                         </div>
                     ))}
-                    
+                     
                 </div>
             
             <div className="btn_pagination">

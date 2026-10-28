@@ -22,7 +22,6 @@ const sql_login = `SELECT id_user, pseudo, role, mot_de_passe, email, adresse FR
 
 export const Login = async(email) => {
     const user = await db.query(sql_login, [email])
-    console.log('user_model :', user)
     return user ? user[0] : null
 }
 

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "../../context/authcontexte"
+import { RiCloseLargeFill } from "react-icons/ri";
 import './Ajout_produit.css'
 
 export default function Ajout_produit({onbutton}) {
@@ -73,9 +74,13 @@ export default function Ajout_produit({onbutton}) {
 
     return(
             <div className="conteneur">
-                
+                <div className="conteneur_button">
+                    <button onClick={()=>onbutton(false)}>
+                        <RiCloseLargeFill size={20}/>
+                    </button>
+                </div>
                 <form onSubmit={Handlesubmit} className="formulaire_ajout_produit">
-                    <button onClick={()=>onbutton(false)}>X</button>
+                    
                     <input onChange={(e)=>setnameproduct(e.target.value)} value={nameproduct} type="text" placeholder="nom du produit"/>
                     <input onChange={(e)=>setdescription(e.target.value)} value={description} type="text" placeholder="description"/>
                     <input onChange={(e)=>setprice(e.target.value)} value={price} type="number" placeholder="prix"/>
@@ -103,7 +108,7 @@ export default function Ajout_produit({onbutton}) {
                         ))}
                     </select>
 
-                    <button type="submit">Enregistrer ce produit</button>
+                    <button type="submit" className="ajout_prod_btn">Enregistrer ce produit</button>
                 </form>
             </div>
     )

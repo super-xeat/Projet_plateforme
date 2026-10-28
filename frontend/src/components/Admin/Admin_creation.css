@@ -10,6 +10,9 @@
   overflow-y: auto;
 }
 
+.admin_creation_ajout_product {
+  height: 10vh;
+}
 .forms-grid form:last-of-type {
     display: flex;
 }
